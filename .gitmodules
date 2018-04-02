@@ -16,3 +16,6 @@
 [submodule "RPi/LPD/PiBits"]
 	path = RPi/LPD/PiBits
 	url = https://github.com/richardghirst/PiBits.git
+[submodule "RPi/LPD/OpenPLC"]
+	path = RPi/LPD/OpenPLC
+	url = https://github.com/thiagoralves/OpenPLC.git
