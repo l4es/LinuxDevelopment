@@ -1,3 +1,6 @@
 [submodule "RPi/LDD/linux_vfd"]
 	path = RPi/LDD/linux_vfd
 	url = https://github.com/anpaza/linux_vfd.git
+[submodule "RPi/LDD/rfrpi"]
+	path = RPi/LDD/rfrpi
+	url = https://bitbucket.org/disk_91-admin/rfrpi.git
