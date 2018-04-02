@@ -10,3 +10,6 @@
 [submodule "RPi/LDD/rpi-kmod-samples"]
 	path = RPi/LDD/rpi-kmod-samples
 	url = https://github.com/wendlers/rpi-kmod-samples.git
+[submodule "x86/LDD/exercises"]
+	path = x86/LDD/exercises
+	url = https://github.com/leberus/exercises.git
