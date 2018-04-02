@@ -19,3 +19,6 @@
 [submodule "RPi/LPD/OpenPLC"]
 	path = RPi/LPD/OpenPLC
 	url = https://github.com/thiagoralves/OpenPLC.git
+[submodule "RPi/LPD/OpenEnergy/emonpi"]
+	path = RPi/LPD/OpenEnergy/emonpi
+	url = https://github.com/openenergymonitor/emonpi.git
