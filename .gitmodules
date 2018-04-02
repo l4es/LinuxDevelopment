@@ -7,3 +7,6 @@
 [submodule "RPi/LDD/rpi-gpio-driver"]
 	path = RPi/LDD/rpi-gpio-driver
 	url = https://github.com/Soarez/rpi-gpio-driver.git
+[submodule "RPi/LDD/rpi-kmod-samples"]
+	path = RPi/LDD/rpi-kmod-samples
+	url = https://github.com/wendlers/rpi-kmod-samples.git
