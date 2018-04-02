@@ -13,3 +13,6 @@
 [submodule "x86/LDD/exercises"]
 	path = x86/LDD/exercises
 	url = https://github.com/leberus/exercises.git
+[submodule "RPi/LPD/PiBits"]
+	path = RPi/LPD/PiBits
+	url = https://github.com/richardghirst/PiBits.git
