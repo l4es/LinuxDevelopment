@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <pthread.h>
 #include <semaphore.h>
+#include <unistd.h>
 
 char n[1024];
 sem_t len;
@@ -9,8 +10,8 @@ sem_t len;
 void * read1()
 {
     while (1) {
-        printf("Enter a string");
-        scanf("%s",n);
+        printf("Enter a string: ");
+        scanf("%s", n);
         sem_post(&len);
     }
 }
@@ -21,7 +22,7 @@ void * write1()
         sleep (5);
         sem_wait(&len);
         printf("The string entered is :");
-        printf("==== %s\n",n);
+        printf("==== %s\n", n);
     }
 
 }
