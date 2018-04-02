@@ -1,0 +1,3 @@
+[submodule "RPi/LDD/linux_vfd"]
+	path = RPi/LDD/linux_vfd
+	url = https://github.com/anpaza/linux_vfd.git
