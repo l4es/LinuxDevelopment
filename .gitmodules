@@ -22,3 +22,12 @@
 [submodule "RPi/LPD/OpenEnergy/emonpi"]
 	path = RPi/LPD/OpenEnergy/emonpi
 	url = https://github.com/openenergymonitor/emonpi.git
+[submodule "x86/LPD/SocketCAN"]
+	path = x86/LPD/SocketCAN
+	url = git@github.com:mguentner/cannelloni.git
+[submodule "x86/LPD/SocketTCP"]
+	path = x86/LPD/SocketTCP
+	url = git@github.com:vichargrave/tcpsockets.git
+[submodule "RPi/LDD/linux-cc2520-driver"]
+	path = RPi/LDD/linux-cc2520-driver
+	url = git@github.com:anroOfCode/linux-cc2520-driver.git
