@@ -31,3 +31,6 @@
 [submodule "RPi/LDD/linux-cc2520-driver"]
 	path = RPi/LDD/linux-cc2520-driver
 	url = git@github.com:anroOfCode/linux-cc2520-driver.git
+[submodule "RPi/LPD/ST7735R-LCD"]
+	path = RPi/LPD/ST7735R-LCD
+	url = git@github.com:vinodstanur/raspberry-pi-frame-buffer-mapping-to-160x128-ST7735R-LCD.git
