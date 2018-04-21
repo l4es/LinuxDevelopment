@@ -34,3 +34,6 @@
 [submodule "RPi/LPD/ST7735R-LCD"]
 	path = RPi/LPD/ST7735R-LCD
 	url = git@github.com:vinodstanur/raspberry-pi-frame-buffer-mapping-to-160x128-ST7735R-LCD.git
+[submodule "x86/LMT/IPC-examples"]
+	path = x86/LMT/IPC-examples
+	url = git@github.com:lettergram/IPC-examples.git
