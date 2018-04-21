@@ -37,3 +37,12 @@
 [submodule "x86/LMT/IPC-examples"]
 	path = x86/LMT/IPC-examples
 	url = git@github.com:lettergram/IPC-examples.git
+[submodule "x86/LPD/Supervisor"]
+	path = x86/LPD/Supervisor
+	url = git@github.com:Supervisor/supervisor.git
+[submodule "RPi/LPD/RPi-Monitor"]
+	path = RPi/LPD/RPi-Monitor
+	url = git@github.com:XavierBerger/RPi-Monitor.git
+[submodule "x86/LMT/TCP-IP-Network-basic-examples"]
+	path = x86/LMT/TCP-IP-Network-basic-examples
+	url = git@github.com:linfan/TCP-IP-Network-basic-examples.git
