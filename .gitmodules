@@ -46,3 +46,6 @@
 [submodule "x86/LMT/TCP-IP-Network-basic-examples"]
 	path = x86/LMT/TCP-IP-Network-basic-examples
 	url = https://github.com/linfan/TCP-IP-Network-basic-examples.git
+[submodule "BBxM/exploringBB"]
+	path = BBxM/exploringBB
+	url = https://github.com/derekmolloy/exploringBB.git
