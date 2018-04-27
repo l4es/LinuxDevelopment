@@ -52,3 +52,9 @@
 [submodule "Common/Books/Mastering-Embedded-Linux-Programming-Second-Edition"]
 	path = Common/Books/Mastering-Embedded-Linux-Programming-Second-Edition
 	url = https://github.com/PacktPublishing/Mastering-Embedded-Linux-Programming-Second-Edition.git
+[submodule "Common/Books/Linux-Device-Drivers-Development"]
+	path = Common/Books/Linux-Device-Drivers-Development
+	url = https://github.com/PacktPublishing/Linux-Device-Drivers-Development.git
+[submodule "Common/Books/Embedded-Linux-for-Developers"]
+	path = Common/Books/Embedded-Linux-for-Developers
+	url = https://github.com/PacktPublishing/Embedded-Linux-for-Developers.git
