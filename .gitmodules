@@ -49,3 +49,6 @@
 [submodule "BBxM/exploringBB"]
 	path = BBxM/exploringBB
 	url = https://github.com/derekmolloy/exploringBB.git
+[submodule "Common/Books/Mastering-Embedded-Linux-Programming-Second-Edition"]
+	path = Common/Books/Mastering-Embedded-Linux-Programming-Second-Edition
+	url = https://github.com/PacktPublishing/Mastering-Embedded-Linux-Programming-Second-Edition.git
