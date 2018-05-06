@@ -58,3 +58,6 @@
 [submodule "Common/Books/Embedded-Linux-for-Developers"]
 	path = Common/Books/Embedded-Linux-for-Developers
 	url = https://github.com/PacktPublishing/Embedded-Linux-for-Developers.git
+[submodule "RPi/exploringRPi"]
+	path = RPi/exploringRPi
+	url = https://github.com/derekmolloy/exploringrpi.git
