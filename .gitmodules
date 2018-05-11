@@ -50,7 +50,7 @@
 	path = BBxM/exploringBB
 	url = https://github.com/derekmolloy/exploringBB.git
 [submodule "Common/Books/Mastering-Embedded-Linux-Programming-Second-Edition"]
-	path = Common/Books/Mastering-Embedded-Linux-Programming-Second-Edition
+	path = Common/Books/Mastering-Embedded-Linux-Programming
 	url = https://github.com/PacktPublishing/Mastering-Embedded-Linux-Programming-Second-Edition.git
 [submodule "Common/Books/Linux-Device-Drivers-Development"]
 	path = Common/Books/Linux-Device-Drivers-Development
