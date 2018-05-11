@@ -61,3 +61,9 @@
 [submodule "RPi/exploringRPi"]
 	path = RPi/exploringRPi
 	url = https://github.com/derekmolloy/exploringrpi.git
+[submodule "Common/Training/kernel-development"]
+	path = Common/Training/kernel-development
+	url = https://github.com/gregkh/kernel-development.git
+[submodule "Common/Books/Linux-Insides"]
+	path = Common/Books/Linux-Insides
+	url = https://github.com/0xAX/linux-insides.git
