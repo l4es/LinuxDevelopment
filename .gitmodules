@@ -73,3 +73,6 @@
 [submodule "RPi/LDD/PiBits"]
 	path = RPi/LDD/PiBits
 	url = https://github.com/richardghirst/PiBits.git
+[submodule "Common/Training/linux-development"]
+	path = Common/Training/linux-development
+	url = https://github.com/dev-area/linux.git
