@@ -67,3 +67,9 @@
 [submodule "Common/Books/Linux-Insides"]
 	path = Common/Books/Linux-Insides
 	url = https://github.com/0xAX/linux-insides.git
+[submodule "RPi/LDD/Panalyzer"]
+	path = RPi/LDD/Panalyzer
+	url = https://github.com/richardghirst/Panalyzer.git
+[submodule "RPi/LDD/PiBits"]
+	path = RPi/LDD/PiBits
+	url = https://github.com/richardghirst/PiBits.git
