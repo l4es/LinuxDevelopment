@@ -1,0 +1,108 @@
+lcdmod v0.5.5 - LCD driver for HD44780 compatible displays connected to the parallel port.
+
+Copyright (C) by Michael McLellan 2001 (mikey@cs.auckland.ac.nz)
+
+Released under the terms of the GNU GPL, see file COPYING for more details.
+
+HISTORY:
+	v0.5.5 - 22/02/02 - Added support for 2 more wiring schemes. Removed the squish_rows
+						hack no longer needed.
+	v0.5.4 - 08/02/02 - Fixed bug which caused the screen to scroll and clear incorrectly
+						when using the squish_rows option. Thanks Tom Browne for reporting
+						this bug. Rewrote the timing code.
+	v0.5.3 - 03/02/02 - Fixed a few timing problems which caused problems with clearing
+						the display. Thanks Tom Browne for reporting this bug.
+	v0.5.2 - 31/01/02 - Fixed spelling mistake, added support for kernels < v2.2, Thanks
+						Michael Hofmann for reporting these bugs.
+	v0.5.1 - 10/12/01 - Added special case for 16x1 displays, they are treated as two 8
+						character lines side by side so dont automaticaly scroll past 
+						the 8th character.
+	v0.5 - 27/11/01 -	Added support for displays which squash 4 lines into 2 lines in
+						DDRAM, If your 4 line display only seems to display the first two
+						lines, pass squish_rows=1 to the module, ie.
+							insmod lcd squish_rows=1
+
+					  	Added facility to set you own fonts through the device file, see
+						Notes.
+	v0.4 - 16/09/01 -	First public release.
+
+FEATURES:
+	- Character device driver for all HD44780 compatible displays.
+	- Fast 8 bit mode.
+	- Handles all screen sizes.
+	- User definable fonts
+	- proc fs entry shows module configuration and display state.
+	- Should compile for kernel versions >= 2.0.0 (drop me a line if it doesn't)
+	- Understands most vt52 control charaters.
+	- No shitty LCDProc!
+
+WIRING:
+ +----------+-----+-------------------------------------------+
+ | Parallel | LCD | Function                                  |
+ +----------+-----+-------------------------------------------+
+ |    18    |  1  | Ground                                    |
+ |    +5v   |  2  | Supply voltage for logic (+5V or + 3.3V)  |
+ |    18    |  3  | Contrast adjustment                       |
+ |    14    |  4  | Data/Instruction select                   |
+ |    18    |  5  | Read/Write select                         |
+ |    1     |  6  | Enable Signal                             |
+ |    2     |  7  | Data Bus 1                                |
+ |    3     |  8  | Data Bus 2                                |
+ |    4     |  9  | Data Bus 3                                |
+ |    5     |  10 | Data Bus 4                                |
+ |    6     |  11 | Data Bus 5                                |
+ |    7     |  12 | Data Bus 6                                |
+ |    8     |  13 | Data Bus 7                                |
+ |    9     |  14 | Data Bus 8                                |
+ |          |  15 | LED power supply +5V for backlit displays |
+ |          |  16 | LED power supply -5V for backlit displays |
+ +----------+-----+-------------------------------------------+
+
+QUICK-INSTALL:
+ make
+ make install
+ insmod lcd
+ echo Hello > /dev/lcd
+
+ You should see text on the display, if not, you've prolly stuffed something up. Use
+ 	dmesg | tail 
+ or
+ 	tail -f /var/log/messages
+ to see any module debug info which may help. On kernel versions >= 2.4.0 the module
+ will create a proc fs entry you can read to get module configuration and current
+ module state.
+
+DETAILED-INSTALL:
+ The LCD module defaults to using the parallel port at 0x378, display rows = 2, and
+ columns = 16. If your setup is different from this you can change the defaults at
+ compile time by editing the Makefile and setting DFLT_BASE, DFLT_DISP_ROWS,
+ DFLT_SQUISH_ROWS and/or DFLT_DISP_COLS. You can also pass parameters when inserting
+ the module, the module accepts the following parameters;
+    io           Parallel port i/o base address (default: 0x378),
+    disp_rows    LCD rows (default: 2),
+    disp_cols    LCD columns (default: 16).
+ e.g.
+    insmod lcd io=0x378 disp_rows=4 disp_cols=20
+
+ display_date is a simple example script showing how to use the display.
+
+NOTES:
+ Sending the device a number n from 1-8 (the number not the ASCII) will display whatever
+ is in the CGRAM at index n, which is set at module initialisation to charaters useful
+ for drawing graphs e.g. volume, spectrum analyser.
+
+ You can setup your own fonts (up to 8 chars) by sending the device an
+ Esc-R(the font index)(8 bytes defining a bitmap for that character)
+ Only the lower 5 bits from every byte are used because the characters are 5 wide by 8
+ high.
+ Examples:
+	echo -en "\033[R1\037\037\037\037\037\037\037\037" > /dev/lcd
+	Sets the character in font index 1 to a filled in block.
+
+	echo -en "\033[R0\037\000\037\000\037\000\037\000" > /dev/lcd
+	Sets the character in font index 0 to horizontal stripes.
+
+	echo -en "\000\001\002\003\004\005\006\007" > /dev/lcd
+	Will print out all the user-definable characters.
+
+22/02/2002

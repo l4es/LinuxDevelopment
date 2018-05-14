@@ -1,0 +1,288 @@
+- version 0.13.9	2010-07-04
+	global:
+	- introduced __set_br() and __get_br() globally for
+	  cleaner bit operations and manipulations
+	- minor modifications to follow configuration changes in
+	  Linux 2.6.28 and later
+	lcd-console.c
+	- rationalized and optimized lcd-console program
+	hd44780.c
+	- introduced BF_CHECK statistics for optimization purposes
+	- fixed a bug in read_ac() relevant on big-endian architectures
+
+
+- version 0.13.8	2009-06-15
+	lcd-linux.c:
+	- implemented CGRAM buffering.
+	- added support for modified linux 2.6.27 sys filesystem:
+	  device_create() had its prototype changed.
+	- avoided NULL pointer dereferences in do_lcd_ioctl().
+	- DECOM mode implemented: ESC [ ? 6 h and ESC [ ? 6 l.
+	- improved read behavior when the driver does not
+	  provide a reading function.
+	- implemented the LCDL_IOATTR ioctl to read from/write to
+	  the char device including or excluding attributes
+	  in the same way as /dev/vcs and /dev/vcsa.
+	hd44780.c:
+	- added proc file to display the bitmap of cgram characters.
+	- refined CGRAM buffering.
+	- simplified and rationalized wiring configuration scheme.
+	- the cgram_buffer is now shared between lcd-linux layer
+	  and the display driver through the driver struct.
+	global:
+	- documentation updated.
+
+- version 0.13.6	2009-01-17
+	- simplified and optimized the hd44780 driver.
+	- fixed a driving bug in the hd44780 driver visible on
+	  displays with more than one controller onboard.
+	- fixed a scroll bug in the lcd-linux module for
+	  reverse writing.
+	- modified hardware.h and config.h.
+
+- version 0.13.4	2008-09-13
+	- added support for modified linux 2.6.26 proc filesystem:
+	  proc_root is no longer available.
+	- optimized the hd44780 driver; some functions are now inlined.
+	- optimized and inlined __memset_short() and __memcpy_short() 
+	  functions.
+	- lcd_memset() and lcd_memmove() are no longer exported and 
+	  replaced by two ioctls LCDL_MEMSET and LCD_MEMMOVE.
+	- implemented variable number of arguments for lcd_ioctl().
+
+- version 0.13.2	2008-03-25
+	- improved documentation.
+	- improved lcdcon module.
+	- minor changes to follow Linux 2.6.24 changes.
+	- changed lcd_read/write() prototypes; now they take a void * pointer
+	  as a read/write buffer and an additional argument is required to 
+	  specify whether the buffer is a short * or a char * (i.e. 
+	  whether data includes attributes or not).
+	- fixed a bug that prevented attributes from being rendered.
+	- added module autoloading capability.
+
+- version 0.13.0	2008-01-04
+	- implemented attributes (colors, inverted video, boldface, 
+	  etc... on displays supporting attributes).
+	- improved scroll functions and implemented CSI r escape 
+	  sequence to set the scroll region.
+	- documentation updated.
+	- removed the test_module.c source in the examples directory.
+	- removed the frames member in the lcd_parameters struct.
+
+- version 0.12.6	2007-09-29
+	- EXPERIMENTAL: lcdcon module added; this is a kernel level
+	  console driver for lcd displays using the lcd-linux interface.
+	- lcd_memset() and lcd_memmove() functions are now exported.
+	- optimized read/write strategy in the hd44780 driver to take
+	  into account check-busy-flag/busy-waiting and 4/8 bit options.
+	- bug fixed in lcd-linux; when the driver does not provide its
+	  own charmap and lcd-linux provides one, a driver reset resulted
+	  in an invalid charmap.
+	- improved goto_xy() behavior.
+	- corrected scroll behavior.
+	- made lcd_read() and lcd_write uninterruptible.
+	- documentation updated.
+
+- version 0.12.5	2007-05-12
+	- kernel interface changed; now the lcd_struct pointer describing 
+	  each device is stored in the file struct.
+	- implemented the ESC [ ... h and ESC [ ... l escape sequences.
+	- documentation updated.
+	- fixed a serious buffer overflow in proc_fb_read() in lcd-linux.c.
+	- removed the ESC S escape sequence.
+	- improved VT102 emulation; implemented need_wrap and
+	  insert mode.
+	- fixed a bug in the hd44780 driver in handling displays
+	  with more than one controller onboard; thanks to Dennis Kerrisk
+	  for pointing out this bug.
+	- implemented lcd_driver_setup() in lcd-linux.h; modified
+	  the hd44780 and example drivers accordingly.
+
+- version 0.12.1	2007-02-25
+	- replaced read_display() and write_display() macros
+	  with equivalent functions.
+	- fixed a bug in the hd44780 driver regarding cursor repositioning
+	  in displays with less than 40 columns.
+	- added sysfs support for 2.6 kernel (for udev usage).
+
+- version 0.12.0	2007-01-09
+	- fixed a bug in the hd44780 driver in the 4 bit bus support.
+	- lcd_unregister_driver() prototype changed; now it takes both
+	  a pointer to the driver struct and the lcd parameter struct.
+	- the lcd_drivers array is now implemented as a doubly linked list;
+	  this allows to save one kmalloc allocation wich results in memory
+	  saving; moreover there is no longer memory waste for unused minor
+	  numbers; find_lcd_struct() and list_add_sorted() were introduced.
+	- fixed some race conditions.
+	- introduced semaphores for concurrent execution.
+	- implemented dynamic charmap allocation.
+	- removed the new ESC N and ESC P escape sequences to switch to
+	  the next and previous frame respectively; definitely a bad idea.
+	- simplified and inlined the ugly fb_limits function; improved scrup()
+	  and scrdown().
+	- implemented smart functions to keep the cursor in the visible screen
+	  area.
+	- lcd_drivers is now allocated using kmalloc instead of vmalloc.
+	- implemented many (almost paranoid) sanity checks on the functions and
+	  parameter of the driver.
+	- removed the fb_end field from the struct lcd_struct; renamed fb_start
+	  into fb_base; now the used area is assumed to be the whole
+	  framebuffer.
+	- changed the behavior of ESC A and ESC B, scroll up and scroll down
+	  sequences; now these sequences take a parameter which is the number of
+	  lines to scroll; improved behavior close to the framebuffer
+	  boundaries.
+	- MOST IMPORTANT!!! Due to the introduction of the virtual screen, the
+	  offset range now only refers to the display panel; all CGRAM and
+	  charmap operations are now implemented using ioctls.
+	- implemented the new ESC N and ESC P escape sequences to switch to the
+	  next and previous frame respectively.
+	- implemented the new ESC C sequence to move the visible screen area
+	  within the frame.
+	- implemented a reasonable behavior for backspace across frame
+	  boundaries.
+
+- version 0.11.0	2006-11-12
+	- BROKEN!!!! Don't use!
+	- improved scroll and backspace behavior
+	- removed the HD44780_RAW_CMD ioctl; it is not a good
+	  idea to directly pass commands to the display controller.
+	- removed hd44780_handle_custom_write() and
+	  hd44780_handle_custom_ioctl() functions; no longer needed.
+	- introduced the virtual screen abstraction to emulate
+	  virtually any console size.
+	- extended the hd44780 driver to support up to 7 controllers.
+	- changed iterator_dec().
+	- changed read_char() and read_data(); now they return a void and
+	  the character being read is passed via an unsigned char pointer.
+	- documentation updated.
+	- modified read_display() macro in hd44780.c.
+	- changed escape behavior in lcd-linux.c; there are no more
+	  esc states; the esc character is written in the struct_flags.
+
+- version 0.10.2	2006-07-02
+	- the assigned minor number can be specified when
+	  loading the module.
+	- improved init/cleanup functions.
+	- fixed a bug in the IOCTL_SET_PARAM ioctl.
+
+- version 0.10.0	2006-04-11
+	- new ESC S escape sequence to activate/deactivate
+	  scrolling of the display.
+	- documentation updated.
+	- massive code cleanup and rationalized.
+	- backward read/write is now usable, no longer
+	  experimental.
+	- removed useless fields in lcd_struct.
+	- implemented smart backspace() and tab().
+	- CSI escape sequences are now enabled only
+	  in forward read/write mode
+	- _Completely_ rewritten the console emulation, now being
+	  very similar to the Linux console.
+	- improved lcd_mempcy() and lcd_memset() functions.
+	- fixed a design error in the implementation of the handling of
+	  four lines LCDs
+
+- version 0.9.2		2005-12-21
+	- removed obsolete support for 2.0 kernels;
+	  it will be however available in the CVS version
+	- many bugfixes in the console behavior.
+	- more efficient init and cleanup sequence.
+	- rationalized handling of control characters.
+	- fixed a timing issue in the hd44780 driver
+
+- version 0.9.0		2005-08-23
+	- this is the first version of the two separate pieces of
+	  software: lcd-linux (the software layer) and the hardware driver
+	  (only the hd44780 is presently available); other drivers for
+	  different controllers may be easily written following the skeleton
+	  file in the drivers/skeleton directory;
+	  What has changed between lcd-linux 0.8.9 and 0.9.0 ? Really
+	  everything, with lots of bugfixes and improvements.
+
+- version 0.8.10 (never released, only available through CVS)
+	- documentation corrected
+	- code cleanup
+	- rationalized read and write functions
+	- removed the ESC m escape sequence; now character mapping
+	  is implemented with the IOCTL_CHARSUBST ioctl
+	- improved scroll functions
+	- deleted the ugly CLEAR_ROW flag
+	- corrected behaviour against multiple initializations
+	  and cleanups
+	- documentation updated
+	- corrected a missing return in file_op.c
+	- deleted file tty.c
+	- rewritten the SWAP_CHARMAP ioctl
+
+- version 0.8.9		2005-06-15
+	- added an equivalent of the memmove and memcpy functions
+	- added the new ESC r escape sequence to read/write from
+	  right to left (limited functionality and VERY experimental)
+	- implementation of (meaningful) CSI escape sequences is now
+	  completely similar to that of the standard linux console
+	- improved init and cleanup sequences
+	- slightly changed the low level read/write functions; maybe improving
+	  speed (?) to be tested ......
+	- added the new ESC h escape sequence to turn display on and off
+	- minor bugs fixed in the framebuffer implementation
+	- the huge handle_input() function is now cut in several simpler
+	  functions and rationalized
+	- introduced many new ioctls for charmap manipulation and for direct
+	  command passing
+	- done a massive code cleanup
+	- introduced the LCD_CHECK_BF flag to control busy flag checking
+	- improved busy flag checking
+	- documentation updated
+	- removed the PROC flag; now the /proc filesystem is used if available
+	- removed the READ flag; now reading is always enabled if available
+
+- version 0.8.8		2005-04-07
+	- improved virtual framebuffer support
+	- changed the read and write sequence
+	- timings adjusted
+
+- Version 0.8.7		2005-02-19
+	- /proc/lcd/display entry replaced by /proc/lcd/framebuffer
+	- documentation updated
+	- introduced two auxiliary functions csi_M() and csi_L()
+	- implemented a quite usable virtual framebuffer for display scrolling
+	  *** IMPORTANT ***
+	  **	renamed the main header file lcd.h into lcd-linux.h
+	  **	the lcd_driver has a new field added, called "frames"
+	  *****
+	- code cleanup
+	- definitely fixed a bug in the console support
+	- avoided useless cursor repositioning in write_data()
+	- timing constants modified for better support of slow displays
+	- merged scroll_up() and scroll_dn() in scroll()
+
+- Version 0.8.6		2005-01-22
+	- implemented a VERY rough tty support; not very functional
+	- added support for dynamic major number allocation
+	- major bugs fixed in init and cleanup procedures
+	- changed lcd_init() and do_lcd_init() prototypes
+	- fixed a bug that caused a kernel oops when accessing
+	  /proc/devices after an insmod failure (thanks to Michael Reinelt)
+	- corrected main Makefile (thanks to Michael Reinelt)
+	- implemented busy-flag checking
+	- redesigned the read/write functions
+	- removed write_command_init; no longer needed
+	- bugs fixed in the console support
+	- corrected version number in lcd.h
+	- documentation updated
+
+- Version 0.8.5		2004-12-29
+	- added boot command line parameters
+	- modified some function prototypes
+	- cleanup function modified
+	- corrected documentation
+	- removed obsolete functions in Linux 2.6 support
+	- removed Rules.make; no longer needed
+	- Makefiles modified
+	- corrected behaviour for unsupported ECMA-48 CSI escape sequences
+	- added support for LCD display console
+
+- Version 0.8.0		2004-11-08
+	- First Public Release

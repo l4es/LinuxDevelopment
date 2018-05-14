@@ -1,0 +1,7 @@
+#!/bin/sh
+while true;
+do
+    echo -en "\033[J\033[H`date +\"%A %e %b\"` \r\n`date +%r`" > /dev/lcd
+    sleep 1s
+done
+

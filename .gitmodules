@@ -76,3 +76,42 @@
 [submodule "Common/Training/linux-development"]
 	path = Common/Training/linux-development
 	url = https://github.com/dev-area/linux.git
+[submodule "Common/Examples/xbee-driver"]
+	path = Common/Examples/xbee-driver
+	url = https://github.com/robbles/xbee-driver.git
+[submodule "Common/Examples/dht22-sensor-driver"]
+	path = Common/Examples/dht22-sensor-driver
+	url = https://github.com/Filkolev/DHT22-sensor-driver.git
+[submodule "Common/Examples/mcp9808-driver"]
+	path = Common/Examples/mcp9808-driver
+	url = https://github.com/savoca/mcp9808.git
+[submodule "Common/Examples/knetstat"]
+	path = Common/Examples/knetstat
+	url = https://github.com/veithen/knetstat.git
+[submodule "Common/Examples/tpe-lkm"]
+	path = Common/Examples/tpe-lkm
+	url = https://github.com/cormander/tpe-lkm.git
+[submodule "Common/Examples/forge_socket"]
+	path = Common/Examples/forge_socket
+	url = https://github.com/ewust/forge_socket.git
+[submodule "Common/Examples/netcat-cpi-kernel-module"]
+	path = Common/Examples/netcat-cpi-kernel-module
+	url = https://github.com/usrbinnc/netcat-cpi-kernel-module.git
+[submodule "Common/Examples/gpio-heartbeat"]
+	path = Common/Examples/gpio-heartbeat
+	url = https://github.com/longsleep/gpio-heartbeat.git
+[submodule "Common/Examples/simple-linux-kernel-tcp-client-server"]
+	path = Common/Examples/simple-linux-kernel-tcp-client-server
+	url = https://github.com/abysamross/simple-linux-kernel-tcp-client-server.git
+[submodule "Common/Examples/rfm12b-linux"]
+	path = Common/Examples/rfm12b-linux
+	url = https://github.com/gkaindl/rfm12b-linux.git
+[submodule "Common/Examples/buzzer"]
+	path = Common/Examples/buzzer
+	url = https://github.com/teknoraver/buzzer.git
+[submodule "Common/Examples/fbtft"]
+	path = Common/Examples/fbtft
+	url = https://github.com/notro/fbtft.git
+[submodule "Common/Examples/Linux-Device-Driver-for-Character-LCD-Kernel-Level"]
+	path = Common/Examples/Linux-Device-Driver-for-Character-LCD-Kernel-Level
+	url = https://github.com/hsm5xw/Linux-Device-Driver-for-Character-LCD-Kernel-Level.git

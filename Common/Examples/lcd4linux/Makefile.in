@@ -1,0 +1,535 @@
+# Makefile.in generated automatically by automake 1.4-p6 from Makefile.am
+
+# Copyright (C) 1994, 1995-8, 1999, 2001 Free Software Foundation, Inc.
+# This Makefile.in is free software; the Free Software Foundation
+# gives unlimited permission to copy and/or distribute it,
+# with or without modifications, as long as this notice is preserved.
+
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY, to the extent permitted by law; without
+# even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.
+
+# Process this file with automake to produce Makefile.in
+
+
+SHELL = @SHELL@
+
+srcdir = @srcdir@
+top_srcdir = @top_srcdir@
+VPATH = @srcdir@
+prefix = @prefix@
+exec_prefix = @exec_prefix@
+
+bindir = @bindir@
+sbindir = @sbindir@
+libexecdir = @libexecdir@
+datadir = @datadir@
+sysconfdir = @sysconfdir@
+sharedstatedir = @sharedstatedir@
+localstatedir = @localstatedir@
+libdir = @libdir@
+infodir = @infodir@
+mandir = @mandir@
+includedir = @includedir@
+oldincludedir = /usr/include
+
+DESTDIR =
+
+pkgdatadir = $(datadir)/@PACKAGE@
+pkglibdir = $(libdir)/@PACKAGE@
+pkgincludedir = $(includedir)/@PACKAGE@
+
+top_builddir = .
+
+ACLOCAL = @ACLOCAL@
+AUTOCONF = @AUTOCONF@
+AUTOMAKE = @AUTOMAKE@
+AUTOHEADER = @AUTOHEADER@
+
+INSTALL = @INSTALL@
+INSTALL_PROGRAM = @INSTALL_PROGRAM@ $(AM_INSTALL_PROGRAM_FLAGS)
+INSTALL_DATA = @INSTALL_DATA@
+INSTALL_SCRIPT = @INSTALL_SCRIPT@
+transform = @program_transform_name@
+
+NORMAL_INSTALL = :
+PRE_INSTALL = :
+POST_INSTALL = :
+NORMAL_UNINSTALL = :
+PRE_UNINSTALL = :
+POST_UNINSTALL = :
+host_alias = @host_alias@
+host_triplet = @host@
+CC = @CC@
+CPP = @CPP@
+CURSES_INCLUDEDIR = @CURSES_INCLUDEDIR@
+CURSES_LIBS = @CURSES_LIBS@
+DRVLIBS = @DRVLIBS@
+HAVE_LIB = @HAVE_LIB@
+LIB = @LIB@
+LN_S = @LN_S@
+LTLIB = @LTLIB@
+MAKEINFO = @MAKEINFO@
+PACKAGE = @PACKAGE@
+PLUGINLIBS = @PLUGINLIBS@
+PYTHON = @PYTHON@
+PYTHON_CPPFLAGS = @PYTHON_CPPFLAGS@
+PYTHON_EXEC_PREFIX = @PYTHON_EXEC_PREFIX@
+PYTHON_EXTRA_LIBS = @PYTHON_EXTRA_LIBS@
+PYTHON_LDFLAGS = @PYTHON_LDFLAGS@
+PYTHON_PLATFORM = @PYTHON_PLATFORM@
+PYTHON_PREFIX = @PYTHON_PREFIX@
+PYTHON_SITE_PKG = @PYTHON_SITE_PKG@
+PYTHON_VERSION = @PYTHON_VERSION@
+VERSION = @VERSION@
+pkgpyexecdir = @pkgpyexecdir@
+pkgpythondir = @pkgpythondir@
+pyexecdir = @pyexecdir@
+pythondir = @pythondir@
+
+AUTOMAKE_OPTIONS = gnu
+CLEANFILES = *~
+DRIVERS = @DRIVERS@
+PLUGINS = @PLUGINS@
+
+bin_PROGRAMS = lcd4linux
+
+AM_CFLAGS = -D_GNU_SOURCE -Wall -W
+
+lcd4linux_LDFLAGS = 
+lcd4linux_LDADD = @DRIVERS@ @PLUGINS@ @DRVLIBS@ @PLUGINLIBS@
+lcd4linux_DEPENDENCIES = @DRIVERS@ @PLUGINS@
+
+lcd4linux_SOURCES =  lcd4linux.c                 cfg.c         cfg.h         debug.c       debug.h       drv.c         drv.h         evaluator.c   evaluator.h   hash.c        hash.h        layout.c      layout.h      pid.c         pid.h         timer.c       timer.h       thread.c      thread.h      udelay.c      udelay.h      qprintf.c     qprintf.h                                 widget.c      widget.h      widget_text.c widget_text.h widget_bar.c  widget_bar.h  widget_icon.c widget_icon.h                             plugin.c      plugin.h      plugin_cfg.c                plugin_math.c               plugin_string.c             plugin_test.c               plugin_time.c
+
+
+EXTRA_lcd4linux_SOURCES =  drv_generic_text.c          drv_generic_text.h          drv_generic_graphic.c       drv_generic_graphic.h       drv_generic_serial.c        drv_generic_serial.h        drv_generic_parport.c       drv_generic_parport.h       drv_generic_i2c.c           drv_generic_i2c.h           drv_BeckmannEgle.c          drv_BWCT.c                  drv_Crystalfontz.c          drv_Curses.c                drv_Cwlinux.c               drv_HD44780.c               drv_Image.c                 drv_LCDLinux.c              drv_LCDLinux.h              drv_LCDTerm.c               drv_M50530.c                drv_MatrixOrbital.c         drv_MilfordInstruments.c    drv_Noritake.c              drv_NULL.c                  drv_RouterBoard.c           drv_serdisplib.c            drv_SimpleLCD.c             drv_T6963.c                 drv_Trefon.c                drv_USBLCD.c                drv_X11.c                                               font_6x8.h                                              lcd4linux_i2c.h                                         plugin_apm.c                plugin_cpuinfo.c            plugin_diskstats.c          plugin_dvb.c                plugin_exec.c               plugin_i2c_sensors.c        plugin_imon.c               plugin_isdn.c               plugin_loadavg.c            plugin_meminfo.c            plugin_mysql.c              plugin_netdev.c             plugin_pop3.c               plugin_ppp.c                plugin_proc_stat.c          plugin_python.c             plugin_seti.c               plugin_statfs.c             plugin_uname.c              plugin_uptime.c             plugin_wireless.c           plugin_xmms.c
+
+
+EXTRA_DIST =  lcd4linux.conf.sample       lcd4kde.conf                lcd4linux.kdelnk            lcd4linux.xpm               lcd4linux.lsm               curses.m4                   AUTHORS                     CREDITS                     FAQ                         NEWS                        TODO                        README                      README.Drivers              README.Plugins              README.KDE                  plugin_sample.c
+
+ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
+mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
+CONFIG_HEADER = config.h
+CONFIG_CLEAN_FILES = 
+PROGRAMS =  $(bin_PROGRAMS)
+
+
+DEFS = @DEFS@ -I. -I$(srcdir) -I.
+CPPFLAGS = @CPPFLAGS@
+LDFLAGS = @LDFLAGS@
+LIBS = @LIBS@
+X_CFLAGS = @X_CFLAGS@
+X_LIBS = @X_LIBS@
+X_EXTRA_LIBS = @X_EXTRA_LIBS@
+X_PRE_LIBS = @X_PRE_LIBS@
+lcd4linux_OBJECTS =  lcd4linux.o cfg.o debug.o drv.o evaluator.o hash.o \
+layout.o pid.o timer.o thread.o udelay.o qprintf.o widget.o \
+widget_text.o widget_bar.o widget_icon.o plugin.o plugin_cfg.o \
+plugin_math.o plugin_string.o plugin_test.o plugin_time.o
+CFLAGS = @CFLAGS@
+COMPILE = $(CC) $(DEFS) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
+CCLD = $(CC)
+LINK = $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(LDFLAGS) -o $@
+DIST_COMMON =  README ./stamp-h.in AUTHORS COPYING ChangeLog INSTALL \
+Makefile.am Makefile.in NEWS TODO aclocal.m4 config.guess config.h.in \
+config.sub configure configure.in install-sh missing mkinstalldirs
+
+
+DISTFILES = $(DIST_COMMON) $(SOURCES) $(HEADERS) $(TEXINFOS) $(EXTRA_DIST)
+
+TAR = tar
+GZIP_ENV = --best
+SOURCES = $(lcd4linux_SOURCES) $(EXTRA_lcd4linux_SOURCES)
+OBJECTS = $(lcd4linux_OBJECTS)
+
+all: all-redirect
+.SUFFIXES:
+.SUFFIXES: .S .c .o .s
+$(srcdir)/Makefile.in: Makefile.am $(top_srcdir)/configure.in $(ACLOCAL_M4) 
+	cd $(top_srcdir) && $(AUTOMAKE) --gnu --include-deps Makefile
+
+Makefile: $(srcdir)/Makefile.in  $(top_builddir)/config.status
+	cd $(top_builddir) \
+	  && CONFIG_FILES=$@ CONFIG_HEADERS= $(SHELL) ./config.status
+
+$(ACLOCAL_M4):  configure.in 
+	cd $(srcdir) && $(ACLOCAL)
+
+config.status: $(srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
+	$(SHELL) ./config.status --recheck
+$(srcdir)/configure: $(srcdir)/configure.in $(ACLOCAL_M4) $(CONFIGURE_DEPENDENCIES)
+	cd $(srcdir) && $(AUTOCONF)
+
+config.h: stamp-h
+	@if test ! -f $@; then \
+		rm -f stamp-h; \
+		$(MAKE) stamp-h; \
+	else :; fi
+stamp-h: $(srcdir)/config.h.in $(top_builddir)/config.status
+	cd $(top_builddir) \
+	  && CONFIG_FILES= CONFIG_HEADERS=config.h \
+	     $(SHELL) ./config.status
+	@echo timestamp > stamp-h 2> /dev/null
+$(srcdir)/config.h.in: $(srcdir)/stamp-h.in
+	@if test ! -f $@; then \
+		rm -f $(srcdir)/stamp-h.in; \
+		$(MAKE) $(srcdir)/stamp-h.in; \
+	else :; fi
+$(srcdir)/stamp-h.in: $(top_srcdir)/configure.in $(ACLOCAL_M4) 
+	cd $(top_srcdir) && $(AUTOHEADER)
+	@echo timestamp > $(srcdir)/stamp-h.in 2> /dev/null
+
+mostlyclean-hdr:
+
+clean-hdr:
+
+distclean-hdr:
+	-rm -f config.h
+
+maintainer-clean-hdr:
+
+mostlyclean-binPROGRAMS:
+
+clean-binPROGRAMS:
+	-test -z "$(bin_PROGRAMS)" || rm -f $(bin_PROGRAMS)
+
+distclean-binPROGRAMS:
+
+maintainer-clean-binPROGRAMS:
+
+install-binPROGRAMS: $(bin_PROGRAMS)
+	@$(NORMAL_INSTALL)
+	$(mkinstalldirs) $(DESTDIR)$(bindir)
+	@list='$(bin_PROGRAMS)'; for p in $$list; do \
+	  if test -f $$p; then \
+	    echo "  $(INSTALL_PROGRAM) $$p $(DESTDIR)$(bindir)/`echo $$p|sed 's/$(EXEEXT)$$//'|sed '$(transform)'|sed 's/$$/$(EXEEXT)/'`"; \
+	     $(INSTALL_PROGRAM) $$p $(DESTDIR)$(bindir)/`echo $$p|sed 's/$(EXEEXT)$$//'|sed '$(transform)'|sed 's/$$/$(EXEEXT)/'`; \
+	  else :; fi; \
+	done
+
+uninstall-binPROGRAMS:
+	@$(NORMAL_UNINSTALL)
+	list='$(bin_PROGRAMS)'; for p in $$list; do \
+	  rm -f $(DESTDIR)$(bindir)/`echo $$p|sed 's/$(EXEEXT)$$//'|sed '$(transform)'|sed 's/$$/$(EXEEXT)/'`; \
+	done
+
+.c.o:
+	$(COMPILE) -c $<
+
+.s.o:
+	$(COMPILE) -c $<
+
+.S.o:
+	$(COMPILE) -c $<
+
+mostlyclean-compile:
+	-rm -f *.o core *.core
+
+clean-compile:
+
+distclean-compile:
+	-rm -f *.tab.c
+
+maintainer-clean-compile:
+
+lcd4linux: $(lcd4linux_OBJECTS) $(lcd4linux_DEPENDENCIES)
+	@rm -f lcd4linux
+	$(LINK) $(lcd4linux_LDFLAGS) $(lcd4linux_OBJECTS) $(lcd4linux_LDADD) $(LIBS)
+
+tags: TAGS
+
+ID: $(HEADERS) $(SOURCES) $(LISP)
+	list='$(SOURCES) $(HEADERS)'; \
+	unique=`for i in $$list; do echo $$i; done | \
+	  awk '    { files[$$0] = 1; } \
+	       END { for (i in files) print i; }'`; \
+	here=`pwd` && cd $(srcdir) \
+	  && mkid -f$$here/ID $$unique $(LISP)
+
+TAGS:  $(HEADERS) $(SOURCES) config.h.in $(TAGS_DEPENDENCIES) $(LISP)
+	tags=; \
+	here=`pwd`; \
+	list='$(SOURCES) $(HEADERS)'; \
+	unique=`for i in $$list; do echo $$i; done | \
+	  awk '    { files[$$0] = 1; } \
+	       END { for (i in files) print i; }'`; \
+	test -z "$(ETAGS_ARGS)config.h.in$$unique$(LISP)$$tags" \
+	  || (cd $(srcdir) && etags -o $$here/TAGS $(ETAGS_ARGS) $$tags config.h.in $$unique $(LISP))
+
+mostlyclean-tags:
+
+clean-tags:
+
+distclean-tags:
+	-rm -f TAGS ID
+
+maintainer-clean-tags:
+
+distdir = $(PACKAGE)-$(VERSION)
+top_distdir = $(distdir)
+
+# This target untars the dist file and tries a VPATH configuration.  Then
+# it guarantees that the distribution is self-contained by making another
+# tarfile.
+distcheck: dist
+	-rm -rf $(distdir)
+	GZIP=$(GZIP_ENV) $(TAR) zxf $(distdir).tar.gz
+	mkdir $(distdir)/=build
+	mkdir $(distdir)/=inst
+	dc_install_base=`cd $(distdir)/=inst && pwd`; \
+	cd $(distdir)/=build \
+	  && ../configure --srcdir=.. --prefix=$$dc_install_base \
+	  && $(MAKE) $(AM_MAKEFLAGS) \
+	  && $(MAKE) $(AM_MAKEFLAGS) dvi \
+	  && $(MAKE) $(AM_MAKEFLAGS) check \
+	  && $(MAKE) $(AM_MAKEFLAGS) install \
+	  && $(MAKE) $(AM_MAKEFLAGS) installcheck \
+	  && $(MAKE) $(AM_MAKEFLAGS) dist
+	-rm -rf $(distdir)
+	@banner="$(distdir).tar.gz is ready for distribution"; \
+	dashes=`echo "$$banner" | sed s/./=/g`; \
+	echo "$$dashes"; \
+	echo "$$banner"; \
+	echo "$$dashes"
+dist: distdir
+	-chmod -R a+r $(distdir)
+	GZIP=$(GZIP_ENV) $(TAR) chozf $(distdir).tar.gz $(distdir)
+	-rm -rf $(distdir)
+dist-all: distdir
+	-chmod -R a+r $(distdir)
+	GZIP=$(GZIP_ENV) $(TAR) chozf $(distdir).tar.gz $(distdir)
+	-rm -rf $(distdir)
+distdir: $(DISTFILES)
+	-rm -rf $(distdir)
+	mkdir $(distdir)
+	-chmod 777 $(distdir)
+	@for file in $(DISTFILES); do \
+	  d=$(srcdir); \
+	  if test -d $$d/$$file; then \
+	    cp -pr $$d/$$file $(distdir)/$$file; \
+	  else \
+	    test -f $(distdir)/$$file \
+	    || ln $$d/$$file $(distdir)/$$file 2> /dev/null \
+	    || cp -p $$d/$$file $(distdir)/$$file || :; \
+	  fi; \
+	done
+cfg.o: cfg.c config.h debug.h evaluator.h cfg.h
+debug.o: debug.c config.h debug.h
+drv.o: drv.c config.h debug.h cfg.h drv.h
+drv_BeckmannEgle.o: drv_BeckmannEgle.c config.h debug.h cfg.h qprintf.h \
+	plugin.h evaluator.h widget.h widget_text.h widget_icon.h \
+	widget_bar.h drv.h drv_generic_text.h drv_generic_serial.h
+drv_BWCT.o: drv_BWCT.c config.h debug.h cfg.h qprintf.h plugin.h \
+	evaluator.h widget.h widget_text.h widget_icon.h widget_bar.h \
+	drv.h drv_generic_text.h
+drv_Crystalfontz.o: drv_Crystalfontz.c config.h debug.h cfg.h qprintf.h \
+	timer.h plugin.h evaluator.h widget.h widget_text.h \
+	widget_icon.h widget_bar.h drv.h drv_generic_text.h \
+	drv_generic_serial.h
+drv_Curses.o: drv_Curses.c config.h debug.h cfg.h qprintf.h plugin.h \
+	evaluator.h widget.h widget_text.h widget_bar.h drv.h \
+	drv_generic_text.h
+drv_Cwlinux.o: drv_Cwlinux.c config.h debug.h cfg.h qprintf.h plugin.h \
+	evaluator.h widget.h widget_text.h widget_icon.h widget_bar.h \
+	drv.h drv_generic_text.h drv_generic_serial.h
+drv_generic_graphic.o: drv_generic_graphic.c config.h debug.h cfg.h \
+	plugin.h evaluator.h widget.h widget_text.h widget_icon.h \
+	widget_bar.h drv.h drv_generic_graphic.h font_6x8.h
+drv_generic_i2c.o: drv_generic_i2c.c config.h lcd4linux_i2c.h debug.h \
+	qprintf.h cfg.h udelay.h drv_generic_i2c.h
+drv_generic_parport.o: drv_generic_parport.c config.h debug.h qprintf.h \
+	cfg.h udelay.h drv_generic_parport.h
+drv_generic_serial.o: drv_generic_serial.c config.h debug.h qprintf.h \
+	cfg.h drv_generic_serial.h
+drv_generic_text.o: drv_generic_text.c config.h debug.h cfg.h plugin.h \
+	evaluator.h widget.h widget_text.h widget_icon.h widget_bar.h \
+	drv.h drv_generic_text.h
+drv_HD44780.o: drv_HD44780.c config.h debug.h cfg.h udelay.h qprintf.h \
+	timer.h plugin.h evaluator.h widget.h widget_text.h \
+	widget_icon.h widget_bar.h drv.h drv_generic_text.h \
+	drv_generic_parport.h drv_generic_i2c.h
+drv_Image.o: drv_Image.c config.h debug.h cfg.h timer.h qprintf.h \
+	plugin.h evaluator.h widget.h widget_text.h widget_icon.h \
+	widget_bar.h drv.h drv_generic_graphic.h
+drv_LCDLinux.o: drv_LCDLinux.c config.h debug.h cfg.h qprintf.h plugin.h \
+	evaluator.h widget.h widget_text.h widget_icon.h widget_bar.h \
+	drv.h drv_generic_text.h drv_LCDLinux.h
+drv_LCDTerm.o: drv_LCDTerm.c config.h debug.h cfg.h qprintf.h plugin.h \
+	evaluator.h widget.h widget_text.h widget_icon.h widget_bar.h \
+	drv.h drv_generic_text.h drv_generic_serial.h
+drv_M50530.o: drv_M50530.c config.h debug.h cfg.h qprintf.h udelay.h \
+	plugin.h evaluator.h widget.h widget_text.h widget_icon.h \
+	widget_bar.h drv.h drv_generic_text.h drv_generic_parport.h
+drv_MatrixOrbital.o: drv_MatrixOrbital.c config.h debug.h cfg.h plugin.h \
+	evaluator.h widget.h widget_text.h widget_icon.h widget_bar.h \
+	drv.h drv_generic_text.h drv_generic_serial.h
+drv_MilfordInstruments.o: drv_MilfordInstruments.c config.h debug.h \
+	cfg.h plugin.h evaluator.h widget.h widget_text.h widget_icon.h \
+	widget_bar.h drv.h drv_generic_text.h drv_generic_serial.h
+drv_Noritake.o: drv_Noritake.c config.h debug.h cfg.h qprintf.h plugin.h \
+	evaluator.h widget.h widget_text.h widget_icon.h widget_bar.h \
+	drv.h udelay.h drv_generic_text.h drv_generic_parport.h
+drv_NULL.o: drv_NULL.c config.h debug.h cfg.h plugin.h evaluator.h \
+	widget.h widget_text.h widget_bar.h drv.h drv_generic_text.h
+drv_RouterBoard.o: drv_RouterBoard.c config.h debug.h cfg.h udelay.h \
+	qprintf.h plugin.h evaluator.h widget.h widget_text.h \
+	widget_icon.h widget_bar.h drv.h drv_generic_text.h
+drv_serdisplib.o: drv_serdisplib.c config.h debug.h cfg.h qprintf.h \
+	plugin.h evaluator.h widget.h widget_text.h widget_icon.h \
+	widget_bar.h drv.h drv_generic_graphic.h
+drv_SimpleLCD.o: drv_SimpleLCD.c config.h debug.h cfg.h qprintf.h \
+	plugin.h evaluator.h widget.h widget_text.h widget_icon.h \
+	widget_bar.h drv.h drv_generic_text.h drv_generic_serial.h
+drv_T6963.o: drv_T6963.c config.h debug.h cfg.h qprintf.h udelay.h \
+	plugin.h evaluator.h widget.h widget_text.h widget_icon.h \
+	widget_bar.h drv.h drv_generic_graphic.h drv_generic_parport.h
+drv_Trefon.o: drv_Trefon.c config.h debug.h cfg.h qprintf.h plugin.h \
+	evaluator.h widget.h widget_text.h widget_icon.h widget_bar.h \
+	drv.h drv_generic_text.h
+drv_USBLCD.o: drv_USBLCD.c config.h debug.h cfg.h qprintf.h udelay.h \
+	plugin.h evaluator.h widget.h widget_text.h widget_icon.h \
+	widget_bar.h drv.h drv_generic_text.h
+drv_X11.o: drv_X11.c config.h debug.h cfg.h qprintf.h timer.h plugin.h \
+	evaluator.h widget.h widget_text.h widget_icon.h widget_bar.h \
+	drv.h drv_generic_graphic.h
+evaluator.o: evaluator.c config.h debug.h evaluator.h
+hash.o: hash.c config.h debug.h hash.h
+layout.o: layout.c config.h debug.h cfg.h widget.h layout.h
+lcd4linux.o: lcd4linux.c config.h cfg.h debug.h qprintf.h pid.h udelay.h \
+	drv.h timer.h layout.h plugin.h evaluator.h
+pid.o: pid.c config.h debug.h pid.h qprintf.h
+plugin.o: plugin.c config.h debug.h plugin.h evaluator.h
+plugin_apm.o: plugin_apm.c config.h debug.h plugin.h evaluator.h hash.h
+plugin_cfg.o: plugin_cfg.c config.h debug.h evaluator.h plugin.h cfg.h
+plugin_cpuinfo.o: plugin_cpuinfo.c config.h debug.h plugin.h evaluator.h \
+	hash.h
+plugin_diskstats.o: plugin_diskstats.c config.h debug.h plugin.h \
+	evaluator.h hash.h
+plugin_dvb.o: plugin_dvb.c config.h debug.h plugin.h evaluator.h hash.h
+plugin_exec.o: plugin_exec.c config.h debug.h plugin.h evaluator.h \
+	hash.h cfg.h thread.h qprintf.h
+plugin_i2c_sensors.o: plugin_i2c_sensors.c config.h debug.h plugin.h \
+	evaluator.h cfg.h hash.h qprintf.h
+plugin_imon.o: plugin_imon.c config.h debug.h plugin.h evaluator.h \
+	qprintf.h cfg.h hash.h
+plugin_isdn.o: plugin_isdn.c config.h debug.h plugin.h evaluator.h \
+	qprintf.h hash.h
+plugin_loadavg.o: plugin_loadavg.c config.h debug.h plugin.h evaluator.h
+plugin_math.o: plugin_math.c config.h debug.h plugin.h evaluator.h
+plugin_meminfo.o: plugin_meminfo.c config.h debug.h plugin.h evaluator.h \
+	hash.h
+plugin_netdev.o: plugin_netdev.c config.h debug.h plugin.h evaluator.h \
+	qprintf.h hash.h
+plugin_pop3.o: plugin_pop3.c config.h debug.h plugin.h evaluator.h cfg.h
+plugin_ppp.o: plugin_ppp.c config.h debug.h plugin.h evaluator.h \
+	qprintf.h hash.h
+plugin_proc_stat.o: plugin_proc_stat.c config.h debug.h plugin.h \
+	evaluator.h qprintf.h hash.h
+plugin_seti.o: plugin_seti.c config.h debug.h plugin.h evaluator.h \
+	hash.h cfg.h
+plugin_statfs.o: plugin_statfs.c config.h debug.h plugin.h evaluator.h
+plugin_string.o: plugin_string.c config.h debug.h plugin.h evaluator.h
+plugin_test.o: plugin_test.c config.h debug.h plugin.h evaluator.h
+plugin_time.o: plugin_time.c config.h debug.h plugin.h evaluator.h
+plugin_uname.o: plugin_uname.c config.h debug.h plugin.h evaluator.h
+plugin_uptime.o: plugin_uptime.c config.h debug.h plugin.h evaluator.h
+plugin_wireless.o: plugin_wireless.c config.h debug.h plugin.h \
+	evaluator.h cfg.h hash.h qprintf.h
+plugin_xmms.o: plugin_xmms.c config.h hash.h debug.h plugin.h \
+	evaluator.h
+qprintf.o: qprintf.c config.h
+thread.o: thread.c config.h debug.h thread.h
+timer.o: timer.c config.h debug.h cfg.h timer.h
+udelay.o: udelay.c config.h debug.h udelay.h
+widget.o: widget.c config.h debug.h cfg.h widget.h
+widget_bar.o: widget_bar.c config.h debug.h cfg.h evaluator.h timer.h \
+	widget.h widget_bar.h
+widget_icon.o: widget_icon.c config.h debug.h cfg.h qprintf.h \
+	evaluator.h timer.h widget.h widget_icon.h
+widget_text.o: widget_text.c config.h debug.h cfg.h evaluator.h timer.h \
+	widget.h widget_text.h
+
+info-am:
+info: info-am
+dvi-am:
+dvi: dvi-am
+check-am: all-am
+check: check-am
+installcheck-am:
+installcheck: installcheck-am
+all-recursive-am: config.h
+	$(MAKE) $(AM_MAKEFLAGS) all-recursive
+
+install-exec-am: install-binPROGRAMS
+install-exec: install-exec-am
+
+install-data-am:
+install-data: install-data-am
+
+install-am: all-am
+	@$(MAKE) $(AM_MAKEFLAGS) install-exec-am install-data-am
+install: install-am
+uninstall-am: uninstall-binPROGRAMS
+uninstall: uninstall-am
+all-am: Makefile $(PROGRAMS) config.h
+all-redirect: all-am
+install-strip:
+	$(MAKE) $(AM_MAKEFLAGS) AM_INSTALL_PROGRAM_FLAGS=-s install
+installdirs:
+	$(mkinstalldirs)  $(DESTDIR)$(bindir)
+
+
+mostlyclean-generic:
+
+clean-generic:
+	-test -z "$(CLEANFILES)" || rm -f $(CLEANFILES)
+
+distclean-generic:
+	-rm -f Makefile $(CONFIG_CLEAN_FILES)
+	-rm -f config.cache config.log stamp-h stamp-h[0-9]*
+
+maintainer-clean-generic:
+mostlyclean-am:  mostlyclean-hdr mostlyclean-binPROGRAMS \
+		mostlyclean-compile mostlyclean-tags \
+		mostlyclean-generic
+
+mostlyclean: mostlyclean-am
+
+clean-am:  clean-hdr clean-binPROGRAMS clean-compile clean-tags \
+		clean-generic mostlyclean-am
+
+clean: clean-am
+
+distclean-am:  distclean-hdr distclean-binPROGRAMS distclean-compile \
+		distclean-tags distclean-generic clean-am
+
+distclean: distclean-am
+	-rm -f config.status
+
+maintainer-clean-am:  maintainer-clean-hdr maintainer-clean-binPROGRAMS \
+		maintainer-clean-compile maintainer-clean-tags \
+		maintainer-clean-generic distclean-am
+	@echo "This command is intended for maintainers to use;"
+	@echo "it deletes files that may require special tools to rebuild."
+
+maintainer-clean: maintainer-clean-am
+	-rm -f config.status
+
+.PHONY: mostlyclean-hdr distclean-hdr clean-hdr maintainer-clean-hdr \
+mostlyclean-binPROGRAMS distclean-binPROGRAMS clean-binPROGRAMS \
+maintainer-clean-binPROGRAMS uninstall-binPROGRAMS install-binPROGRAMS \
+mostlyclean-compile distclean-compile clean-compile \
+maintainer-clean-compile tags mostlyclean-tags distclean-tags \
+clean-tags maintainer-clean-tags distdir info-am info dvi-am dvi check \
+check-am installcheck-am installcheck all-recursive-am install-exec-am \
+install-exec install-data-am install-data install-am install \
+uninstall-am uninstall all-redirect all-am all installdirs \
+mostlyclean-generic distclean-generic clean-generic \
+maintainer-clean-generic clean mostlyclean distclean maintainer-clean
+
+
+# Tell versions [3.59,3.63) of GNU make to not export all variables.
+# Otherwise a system limit (for SysV at least) may be exceeded.
+.NOEXPORT:

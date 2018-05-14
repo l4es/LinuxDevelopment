@@ -1,0 +1,33 @@
+menu "LCD support"
+	depends on EXPERIMENTAL
+
+config LCD_LINUX
+	tristate "LCD-Linux layer"
+	default n
+	help
+	  LCD-Linux provides an easy way to drive LCD displays under
+	  Linux by creating a character which can be read or written.
+	  It features complete VT102 emulation and recognizes
+	  many escape sequences. If you want to use it you must also
+	  choose an appropriate driver, otherwise it will not be
+	  very useful. For more information see
+	  http://lcd-linux.sourceforge.net/
+
+	  To compile LCD-Linux as a module, choose M here:
+	  the module will be called lcd-linux.
+
+config LCD_HD44780
+	tristate "HD44780 controller"
+	depends on LCD_LINUX
+	default n
+	help
+	  This is a LCD-Linux driver for LCD displays based on the
+	  Hitachi HD44780 (and compatible) controllers connected
+	  to the parallel port.
+
+	  To compile this driver as a module, choose M here:
+	  the module will be called hd44780.
+
+	  If unsure, say N.
+
+endmenu

@@ -1,0 +1,8 @@
+if [ "$CONFIG_EXPERIMENTAL" = "y" ]; then
+   mainmenu_option next_comment
+   comment 'LCD support'
+
+   tristate 'LCD-Linux layer' CONFIG_LCD_LINUX
+   dep_tristate '  HD44780 controller' CONFIG_LCD_HD44780 $CONFIG_LCD_LINUX
+   endmenu
+fi

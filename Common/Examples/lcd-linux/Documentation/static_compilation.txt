@@ -1,0 +1,96 @@
+
+				LCD-Linux
+
+		How to compile the lcd driver into the kernel
+
+Copyright (C) 2004 - 2009  Mattia Jona-Lasinio (mjona@users.sourceforge.net)
+--------------------------------------------------------------------------------
+Released under the terms of the GNU GPL, see file COPYING for more details.
+
+
+1. Static compilation into the kernel
+=====================================
+
+To statically compile the driver into the kernel the following operations must
+be performed. I will assume the kernel sources to be in "/usr/src/linux" on
+an i386 architecture:
+
+1) in the main LCD-Linux directory do a "make source_install" as root and change
+to the new directory "/usr/src/linux/drivers/lcd-linux"
+
+
+
+2) rename the appropriate Makefile-2.x to "Makefile"; the available files are:
+- Makefile-2.2: suitable for 2.2 and 2.0 kernels
+- Makefile-2.4: suitable for 2.4 kernels
+- Makefile-2.6: suitable for 2.6 kernels
+
+
+
+3)
+- Linux 2.0.x, 2.2.x, 2.4.x:
+edit "/usr/src/linux/arch/i386/config.in" and add the following line at the
+end of the file:
+
+source drivers/lcd-linux/Config.in
+
+- Linux 2.6.x:
+edit "/usr/src/linux/arch/i386/Kconfig" and add the following line at the end
+of the file:
+
+source "drivers/lcd-linux/Kconfig"
+
+
+
+4)
+- Linux 2.0.x and 2.2.x:
+edit "/usr/src/linux/drivers/Makefile" and add the following lines BEFORE the
+line "include $(TOPDIR)/Rules.make":
+
+ifdef CONFIG_LCD_LINUX
+SUB_DIRS += lcd-linux
+MOD_SUB_DIRS += lcd-linux
+ALL_SUB_DIRS += lcd-linux
+endif
+
+- Linux 2.4.x:
+edit "/usr/src/linux/drivers/Makefile" and add the following lines BEFORE the
+line "include $(TOPDIR)/Rules.make":
+
+mod-subdirs			+= lcd-linux
+subdir-$(CONFIG_LCD_LINUX)	+= lcd-linux
+
+- Linux 2.6.x:
+edit "/usr/src/linux/drivers/Makefile" and add the following line at the end of
+the file:
+
+obj-$(CONFIG_LCD_LINUX)		+= lcd-linux/
+
+
+
+5)
+- Linux 2.0.x and 2.2.x:
+edit "/usr/src/linux/Makefile" and locate the block of "DRIVERS" statements;
+among those statements add the following lines:
+
+ifeq ($(CONFIG_LCD_LINUX),y)
+DRIVERS := $(DRIVERS) drivers/lcd-linux/lcd.o
+endif
+
+- Linux 2.4.x:
+edit "/usr/src/linux/Makefile" and locate the block of "DRIVERS" statements;
+among those statements add the following one:
+
+DRIVERS-$(CONFIG_LCD_LINUX) += drivers/lcd-linux/lcd.o
+
+- Linux 2.6.x:
+no need to modify "/usr/src/linux/Makefile"
+
+
+
+6) configure your kernel following the usual procedure
+
+To compile the driver as a module you can simply do a "make clean install" as
+root in the main directory. Of course if you prefer you can also include the
+driver sources in your kernel sources and compile it as a module through the
+standard procedure, but why doing all this job ?

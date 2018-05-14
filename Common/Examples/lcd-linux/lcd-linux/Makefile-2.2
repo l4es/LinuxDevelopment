@@ -1,0 +1,28 @@
+# $Id: Makefile-2.2,v 1.1.1.1 2005/08/23 13:30:14 mjona Exp $
+#
+# Standard Makefile to statically compile LCD-Linux into the kernel
+# Linux 2.0 and 2.2
+
+O_TARGET := lcd.o
+
+SUB_DIRS :=
+MOD_SUB_DIRS := $(SUB_DIRS)
+ALL_SUB_DIRS := $(SUB_DIRS)
+
+ifeq ($(CONFIG_LCD_LINUX),y)
+ OX_OBJS += lcd-linux.o
+else
+ ifeq ($(CONFIG_LCD_LINUX),m)
+  MX_OBJS += lcd-linux.o
+ endif
+endif
+
+ifeq ($(CONFIG_LCD_HD44780),y)
+ O_OBJS += hd44780.o
+else
+ ifeq ($(CONFIG_LCD_HD44780),m)
+  M_OBJS += hd44780.o
+ endif
+endif
+
+include $(TOPDIR)/Rules.make

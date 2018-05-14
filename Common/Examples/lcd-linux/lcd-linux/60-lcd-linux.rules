@@ -1,0 +1,1 @@
+KERNEL=="hd44780",      NAME="lcd%m",	SYMLINK="lcd"

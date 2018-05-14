@@ -1,0 +1,42 @@
+
+				LCD-Linux
+
+		    Quickstart Guide (for the impatient)
+
+Copyright (C) 2004 - 2009  Mattia Jona-Lasinio (mjona@users.sourceforge.net)
+--------------------------------------------------------------------------------
+Released under the terms of the GNU GPL, see file COPYING for more details.
+
+
+In order to compile LCD-Linux you need a full distribution of the kernel
+sources. The sources must be configured, so if you just downloaded a fresh
+kernel source package, remember to unpack it, do a "make xconfig" and compile a
+new kernel. Some include files will be created in the right places, reflecting
+your current configuration.
+
+To compile lcd-linux and related drivers do
+
+	make
+
+in the main directory. Modules will be placed in the "modules" directory.
+To install them do a "make install".
+
+To compile some example programs do
+
+	make test
+
+in the main directory.
+
+To compile the kernel console driver do
+
+	make lcdcon
+
+in the main directory. Modules will be placed in the "modules" directory. Since
+this module is experimental it is not installed by default. You have to install
+it by hand. Be sure to load all the required modules before loading lcdcon or
+your system will crash!!! To be more specific, you have to load lcd-linux and
+hd44780 modules (both of them) BEFORE loading the lcdcon module. You have been
+warned!!!!
+
+
+Have Fun!

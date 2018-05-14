@@ -1,0 +1,255 @@
+
+				LCD-Linux
+
+	  How to use the driver for HD44780 compatible displays
+			connected to the parallel port
+
+Copyright (C) 2005 - 2009  Mattia Jona-Lasinio (mjona@users.sourceforge.net)
+--------------------------------------------------------------------------------
+Released under the terms of the GNU GPL, see file COPYING for more details.
+
+
+CONTENTS
+
+ 1. Configuration and compilation as a module
+ 2. Module parameters
+ 3. Boot command line parameters
+ 4. Recognized control characters and escape sequences
+ 5. Proc filesystem
+ 6. Multicontroller support
+ 7. Developers
+
+
+
+
+1. Configuration and compilation
+================================
+
+In order to compile LCD-Linux you need a full distribution of the kernel
+sources. The sources must be configured, so if you just downloaded a fresh
+kernel source package, remember to unpack it, do a "make xconfig" and compile a
+new kernel. Some include files will be created in the right places, reflecting
+your current configuration.
+
+This module has been extensively tested under Linux 2.2.x, 2.4.x and 2.6.x
+without any problem. It compiles and probably works on Linux 2.0.x but I
+haven't tested it.
+
+You may want to have a look at the config.h and hardware.h files to meet your
+LCD configuration and wiring scheme. When you are finished simply do a "make
+clean install" as root in the main directory; this will compile and install the
+module.
+
+
+
+2. Module Parameters
+====================
+
+The module supports the following parameters.
+
+ +--------------+-------------------------------------------------------+
+ | io		| Base address of the parallel port.			|
+ |		| Default : 0x378	(short int)			|
+ +--------------+-------------------------------------------------------+
+ | flags	| This parameter encodes several features:		|
+ |		|							|
+ |		| bit 0: Enable busy flag checking.			|
+ |		|	 Default: 1	(enabled)	weight: 1	|
+ |		|							|
+ |		| bit 1: Two bus lengths can be set: 8 or 4 bits.	|
+ |		|	 Default: 0	(8 bits)	weight: 2	|
+ |		|							|
+ |		| bit 2: The HD44780 supports two font sizes when run	|
+ |		|	 in single line mode: 5x10 dots and 5x8 dots.	|
+ |		|	 Default: 0	(5x8)		weight: 4	|
+ +--------------+-------------------------------------------------------+
+ | num_cntr	| Number of controllers to drive (see below).		|
+ |		| Default: 1		(from 1 to 7)			|
+ +--------------+-------------------------------------------------------+
+ | cntr_rows	| Number of rows each controller has to drive.		|
+ |		| Default: 2		(1, 2, 4)			|
+ +--------------+-------------------------------------------------------+
+ | cntr_cols	| Number of columns the display has.			|
+ |		| Default: 40		(short int)			|
+ +--------------+-------------------------------------------------------+
+ | vs_rows	| Number of rows for the virtual screen.		|
+ |		| Default: 25		(short int)			|
+ +--------------+-------------------------------------------------------+
+ | vs_cols	| Number of columns for the virtual screen.		|
+ |		| Default: 80		(short int)			|
+ +--------------+-------------------------------------------------------+
+ | minor	| Assigned minor number.				|
+ |		| Default: 0		(short int)			|
+ +--------------+-------------------------------------------------------+
+ | tabstop	| Length of the tab character.				|
+ |		| Default: 4		(short int)			|
+ +--------------+-------------------------------------------------------+
+
+
+- flags variable.
+
+bits:	    2 1 0
+	    _ _ _
+	   |_|_|_|
+	    | | |					weight:
+	    | | |
+	    | | \-------: Busy flag checking		(1)
+	    | \---------: Bus length			(2)
+	    \-----------: Font size			(4)
+
+
+
+3. Boot command line parameters (not available under Linux 2.0)
+===============================
+
+When the driver is statically compiled into the kernel, the above parameters can
+be passed at boot time, using a comma separated list of numbers. Any absent
+parameter is set automatically to its default value as reported in the table in
+the previous section. Parameters are position dependent and the appropriate
+number of commas must then be inserted. This is the sequence.
+
+hd44780=cntr_rows,cntr_cols,vs_rows,vs_cols,flags,num_cntr,io,minor,tabstop
+
+Examples:
+To set for a 4x16 display with busy flag checking and one controller:
+	hd44780=4,16
+The same as before but with a 2 character long tab character
+	hd44780=4,16,,,,,,,2
+
+
+4. Recognized control characters and escape sequences
+=====================================================
+
+-- Custom escape sequences:
+
+	ESC a	Turn on/off the display cursor (requires argument; see below)
+	ESC b	Turn on/off the display cursor blinking  (requires argument; see below)
+	ESC d	Shift display cursor right
+	ESC e	Shift display cursor left
+	ESC f	Shift display right
+	ESC g	Shift display left
+	ESC h	Turn on/off the display (freeze the display content) (requires argument; see below)
+	ESC l	Turn on/off the backlight (if present) (requires argument; see below)
+
+-- Arguments:
+
+	ESC a	requires one argument: '1' = on; '0' = off;
+	ESC b	requires one argument: '1' = on; '0' = off;
+	ESC h	requires one argument: '1' = on; '0' = off;
+	ESC l	requires one argument: '1' = on; '0' = off;
+	example
+	echo -en '\033a1' > /dev/lcd
+	turn on the display cursor
+
+
+-- User defined characters
+
+User defined characters have codes from 0 to 7. To display them type
+
+echo -en '\033G\000\033G\001\033G\002\033G\003\033G\004\033G\005\033G\006\033G\007' > /dev/lcd
+or
+echo -en '\033G\000\033G\002\033G\004\033G\006' > /dev/lcd
+if you selected 5x10 fonts
+
+or in RAW mode
+
+echo -en '\000\001\002\003\004\005\006\007' > /dev/lcd
+or
+echo -en '\000\002\004\006' > /dev/lcd
+if you selected 5x10 fonts
+
+
+
+5. Proc filesystem
+==================
+
+If you have a 2.2.0 or later Linux kernel, the module will create a
+directory /proc/lcd/hd44780. In this directory you will find the
+following files:
+
+- status:	gives you the status of the display.
+
+- cgram.h:	if you have reading capabilities, this file is the equivalent of
+		"charmap.h" for user defined characters; if you don't want them
+		to get lost when you unload the module you can recompile the
+		module with your own user defined characters, using cgram.h (it
+		must be copied in the "cgram" directory and you need to
+		uncomment the appropriate line in config.h).
+
+
+
+6. Multicontroller support
+==========================
+
+This module supports up to seven different controllers using a 4 bit interface.
+On a PC parallel port we have a total of twelve lines that can be controlled via
+software: eight lines on the data register (pin 2, 3, 4, 5, 6, 7, 8, 9) and four
+lines on the control register (pin 1, 14, 16, 17). Lines on the control register
+are write-only whereas lines on the data register can be read-write. Displays
+require four common lines for data bits and two or one lines for control bits
+depending on whether we want or dont't want to be able to read from the displays
+respectively. Moreover each display requires a separate enable line. It is clear
+that if we want to read from the display, we cannot have more than two
+controllers. If more than two controllers are selected, read functions will be
+disabled (since some pins of the data register would have to be used as 'out'
+lines while the others as 'in' lines which is obviously not possible) and the 4
+bit interface will be selected discarding any user supplied value.
+The only requirement is to wire the enable lines corresponding to the first
+three controllers on whatever three pins controlled by the control register (pin
+1, 14, 16, 17 of the parallel port). The remaining four enable lines must be
+wired on whatever four pins controlled by the data register (pin 2, 3, 4, 5, 6,
+7, 8, 9 of the parallel port).
+The four data lines must be wired on four consecutive pins controlled by the
+data register (pin 2, 3, 4, 5 or 3, 4, 5, 6, and so on). The chosen
+configuration must be selected in the config.h file by setting the appropriate
+SETUP value. The actual hardware configuration must be set in hardware.h.
+
+To resume:
+Up to two controllers with reading capability:
+- RW, RS, E0, E1 lines are connected to whatever four pins on the control
+  register; RW and RS lines are common to both controllers; E0 and E1 lines are
+  enable lines of controller 0 and 1 respectively
+- D7, D6, D5, D4 lines are connected to four consecutive pins on the data
+  register
+
+From three to seven controllers with reading capability:
+- not possible
+
+From three to seven controllers without reading capability:
+- RS, E0, E1, E2 lines are connected to whatever four pins on the control
+  register; RS lines are common to all controllers; E0, E1, E2 lines are enable
+  lines of controller 0, 1 and 2 respectively; the RW line on all controllers
+  must be grounded (pulled down)
+- E3, E4, E5, E6 lines are connected to whatever four pins on the data register
+- D7, D6, D5, D4 lines are connected to four consecutive pins on the data
+  register
+
+
+
+7. Developers
+=============
+
+Macros (for the 'flags' member in the structure lcd_parameters):
+- HD44780_CHECK_BF		Do busy flag checking
+- HD44780_4BITS_BUS		Set the bus length to 4 bits
+- HD44780_5X10_FONT		Use 5x10 dots fonts
+
+
+IOCTLs
+	HD44780_READ_AC		copy the content of the AC register from all
+				current controllers into the buffer pointed by
+				ioctl_param; the number of bytes copied equals
+				the number of controllers
+				typeof (ioctl_param) = unsigned char *
+
+Notes on the AC register:
+- The HD44780_READ_AC ioctl gives access to the Address Counter register of the
+HD44780. This feature is mainly here for the sake of completeness.
+- When accessing the DDRAM, this register contains the address of the byte
+corresponding to the cursor position (hence the byte being read or written in
+the DDRAM). The DDRAM is the RAM that stores the characters appearing on the
+display.
+- When accessing the CGRAM, this register contains the address of the byte
+being read or written in the CGRAM. The CGRAM is the RAM that stores user
+defined characters.
+- If you don't know what this all about, then you don't need it.

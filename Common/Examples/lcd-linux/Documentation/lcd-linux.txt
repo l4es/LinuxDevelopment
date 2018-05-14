@@ -1,0 +1,597 @@
+
+				  LCD-Linux
+
+         How to use the lcd driver for LCD displays under Linux
+
+Copyright (C) 2005 - 2009      Mattia Jona-Lasinio (mjona@users.sourceforge.net)
+--------------------------------------------------------------------------------
+Released under the terms of the GNU GPL, see file COPYING for more details.
+
+
+CONTENTS
+
+ 1. Configuration and compilation as a module
+ 2. Module parameters
+ 3. Boot command line parameters
+ 4. Recognized control characters and escape sequences
+ 5. Offset mapping
+ 6. Proc filesystem
+ 7. Examples
+ 8. Developers
+
+
+
+
+1. Configuration and compilation
+================================
+
+In order to compile LCD-Linux you need a full distribution of the kernel
+sources. The sources must be configured, so if you just downloaded a fresh
+kernel source package, remember to unpack it, do a "make xconfig" and compile a
+new kernel. Some include files will be created in the right places, reflecting
+your current configuration.
+
+This module has been extensively tested under Linux 2.2.x, 2.4.x and 2.6.x
+without any problem. It compiles and probably works on Linux 2.0.x but I
+haven't tested it.
+
+
+
+2. Module Parameters
+====================
+
+The module supports the following parameters.
+
+ +--------------+-------------------------------------------------------+
+ | minors	| Maximum number of possible drivers.			|
+ |		| Default : 8		(1 - 256)			|
+ +--------------+-------------------------------------------------------+
+
+
+
+3. Boot command line parameters (not available under Linux 2.0)
+===============================
+
+When the driver is statically compiled into the kernel, the above parameter can
+be passed at boot time.
+
+lcd=minors
+
+Examples:
+To allocate a maximum of 10 drivers:
+	lcd=10
+
+
+
+4. Recognized control characters and escape sequences
+=====================================================
+
+-- Standard control characters:
+
+ +-------+--------------+-----------------------+
+ | ASCII | Symbol	| Character		|
+ +-------|--------------+-----------------------+
+ |  0x08 | BS	   ^H	| Backspace		|
+ |  0x09 | HT (\t) ^I	| Tab			|
+ |  0x0a | LF (\n) ^J	| Newline (line feed)	|
+ |  0x0b | VT (\v) ^K	| Vertical tab		|
+ |  0x0c | FF	   ^L	| Newpage (form feed)	|
+ |  0x0d | CR (\r) ^M	| Carriage return	|
+ |  0x1b | ESC	   ^[	| Escape		|
+ |  0x7f | DEL	     	| Delete		|
+ |  0x9b | CSI	   ^[[	| Equivalent to ESC [	|
+ +-------+--------------+-----------------------+
+
+
+-- ESC- but not CSI-sequences
+
+	(from the console_codes manpage)
+
+       ESC c     RIS      Reset.
+       ESC D     IND      Linefeed.
+       ESC E     NEL      Newline.
+       ESC M     RI       Reverse linefeed.
+       ESC 7     DECSC    Save current state (cursor coordinates,
+                          attributes, character sets pointed at by G0, G1).
+       ESC 8     DECRC    Restore state most recently saved by ESC 7.
+
+
+      Ignored ESC sequences:
+
+       ESC H     HTS      Set tab stop at current column.
+       ESC Z     DECID    DEC private identification. The kernel
+                          returns the string  ESC [ ? 6 c, claiming
+                          that it is a VT102.
+       ESC %              Start sequence selecting character set
+       ESC % @               Select default (ISO 646 / ISO 8859-1)
+       ESC % G               Select UTF-8
+       ESC % 8               Select UTF-8 (obsolete)
+       ESC # 8   DECALN   DEC screen alignment test - fill screen with E?s.
+       ESC (              Start sequence defining G0 character set
+       ESC ( B               Select default (ISO 8859-1 mapping)
+       ESC ( 0               Select vt100 graphics mapping
+       ESC ( U               Select null mapping - straight to character ROM
+       ESC ( K               Select user mapping - the map that is loaded by
+                             the utility mapscrn(8).
+       ESC )              Start sequence defining G1
+                          (followed by one of B, 0, U, K, as above).
+       ESC >     DECPNM   Set numeric keypad mode
+       ESC =     DECPAM   Set application keypad mode
+       ESC ]     OSC      (Should be: Operating system command)
+                          ESC ] P nrrggbb: set palette, with parameter
+                          given in 7 hexadecimal digits after the final P :-(.
+                          Here n is the color (0-15), and rrggbb indicates
+                          the red/green/blue values (0-255).
+                          ESC ] R: reset palette
+
+
+-- ECMA-48 escape sequences:
+
+	(from the console_codes manpage)
+
+       CSI  (or  ESC  [) is followed by a sequence of parameters, at most NPAR
+       (16), that are decimal numbers separated by  semicolons.  An  empty  or
+       absent  parameter  is taken to be 0 or 1 as the case may be.
+       The sequence of parameters may be preceded by a single question mark.
+
+       The action of a CSI sequence is determined by its final character.
+
+       @   ICH       Insert the indicated # of blank characters.
+       A   CUU       Move cursor up the indicated # of rows.
+       B   CUD       Move cursor down the indicated # of rows.
+       C   CUF       Move cursor right the indicated # of columns.
+       D   CUB       Move cursor left the indicated # of columns.
+       E   CNL       Move cursor down the indicated # of rows, to column 1.
+       F   CPL       Move cursor up the indicated # of rows, to column 1.
+       G   CHA       Move cursor to indicated column in current row.
+       H   CUP       Move cursor to the indicated row, column (origin at 1,1).
+       J   ED        Erase display (default: from cursor to end of display).
+                     ESC [ 1 J: erase from start to cursor.
+                     ESC [ 2 J: erase whole display.
+       K   EL        Erase line (default: from cursor to end of line).
+                     ESC [ 1 K: erase from start of line to cursor.
+                     ESC [ 2 K: erase whole line.
+       L   IL        Insert the indicated # of blank lines.
+       M   DL        Delete the indicated # of lines.
+       P   DCH       Delete the indicated # of characters on the current line.
+       X   ECH       Erase the indicated # of characters on the current line.
+       a   HPR       Move cursor right the indicated # of columns.
+       d   VPA       Move cursor to the indicated row, current column.
+       e   VPR       Move cursor down the indicated # of rows.
+       f   HVP       Move cursor to the indicated row, column.
+       m   SGR       Set attributes.
+       r   DECSTBM   Set scrolling region; parameters are top and bottom row.
+       s   ?         Save cursor location.
+       u   ?         Restore cursor location.
+       `   HPA       Move cursor to indicated column in current row.
+       h   SM        Set Mode.
+       l   RM        Reset Mode.
+
+
+      Ignored CSI sequences:
+
+       c   DA        Answer ESC [ ? 6 c: `I am a VT102'.
+       g   TBC       Without parameter: clear tab stop at the current position.
+       n   DSR       Status report.
+       q   DECLL     Set keyboard LEDs.
+
+
+-- Custom escape sequences:
+
+	ESC A	Scroll up the display content (requires arguments; see below)
+	ESC B	Scroll down the display content (requires arguments; see below)
+	ESC C	Browse the virtual screen (requires arguments; see below)
+	ESC G	Enter graphic mode; (requires arguments; see below)
+	ESC r	Decrement address counter after data read/write (requires
+		arguments; see below)
+	ESC s	User defined character select (requires arguments; see below)
+
+
+-- Arguments:
+
+	ESC A	requires one argument;
+		the number of lines to scroll;
+		example:
+		to scroll 2 lines up
+		echo -en '\033A\2' > /dev/lcd
+		Note that \2 means ascii code 2, not character 2 which has
+		ascii code 50;
+
+	ESC B	requires one argument;
+		the number of lines to scroll;
+		example:
+		to scroll 2 lines down
+		echo -en '\033B\2' > /dev/lcd
+		Note that \2 means ascii code 2, not character 2 which has
+		ascii code 50;
+
+	ESC C	requires one argument;
+		the direction to move the visible area in the virtual screen;
+		'1' = Up
+		'2' = Down
+		'3' = Left
+		'4' = Right
+		example:
+		to go up
+		echo -en '\033C1' > /dev/lcd
+		to go left
+		echo -en '\033C3' > /dev/lcd
+
+	ESC G	requires one argument;
+		the argument is interpreted as a cgram character and must have
+		code between [cgram_char0, cgram_char0+cgram_chars-1];
+		example:
+		on the hd44780 we have
+		[cgram_char0, cgram_char0+cgram_chars-1] = [0, 7]
+
+		echo -en '\033G\0' > /dev/lcd	is the first cgram character
+		echo -en '\033G\7' > /dev/lcd	is the last cgram character
+
+		to print both characters with a single command
+		echo -en '\033G\0\033G\7' > /dev/lcd;
+		With this feature in no way cgram characters can interfere with
+		control characters.
+		If the argument is not in the appropriate range, it is
+		interpreted as a normal character and treated accordingly
+		example:
+		echo -en '\033Ga' > /dev/lcd
+		is equivalent to
+		echo -en 'a' > /dev/lcd
+		echo -en '\033G\n' > /dev/lcd
+		is equivalent to
+		echo -en '\n' > /dev/lcd
+
+	ESC r	requires one argument; '1' = on; '0' = off
+		example:
+		echo -en '\033r1' > /dev/lcd
+		will activate the reverse input/output mode.
+		In this mode CSI escape sequences are disabled.
+
+	ESC s	requires 'cgram_bytes+1' arguments
+		(see the lcd_parameters struct below);
+		the first argument is the slot number of the new user defined
+		character; the subsequent arguments are the bitmap of the new
+		character
+		example:
+		on the hd44780 we have
+		[cgram_char0, cgram_char0+cgram_chars-1] = [0, 7]
+		cgram_bytes = 8
+		then:
+		echo -en '\033s\001\000\001\003\026\011\002\020\010' > /dev/lcd
+		will define the second user defined character
+
+
+Other escape sequences are passed to the display driver calling the
+handle_custom_char() function (if defined).
+
+-- User defined characters
+
+User defined characters have codes from cgram_char0 to
+cgram_char0+cgram_chars-1.
+
+
+
+5. Offset mapping
+=================
+
+	Reading and writing:
+	(reading requires a bidirectional parallel port)
+
+	[0, (vs_cols*vs_rows)-1]	The virtual screen
+
+display panel range:
+- Each time an offset is read or written, the offset is incremented or
+decremented according to the number of bytes written or read.
+
+
+
+6. Proc filesystem
+==================
+
+If you have a 2.2.0 or later Linux kernel, the module will create a
+directory /proc/lcd/. In this directory you will find the following files:
+
+- drivers:	a list of registered display drivers.
+
+A directory for each registered driver; in this directory you will find:
+
+- framebuffer:	the ring framebuffer content.
+
+- display:	an image of the display content.
+
+- charmap.h:	an include file with the current character map; useful if you
+		have your own character substitutions and you don't want them
+		to get lost when you unload the module; then you can recompile
+		the driver with your own character map using charmap.h as a
+		normal include file
+
+
+
+7. Examples
+===========
+
+In the "examples" directory there are examples (test_*.c) on how to read, write
+and manipulate this device. To compile them type "make test" in the main
+directory.
+
+
+
+8. Developers
+=============
+
+To develop your own modules or kernel parts using this driver, just include the
+"lcd-linux.h" header file in the "include/linux" directory. This header defines
+the function prototypes of the interface as well as the ioctls. You must also
+include the header of the driver for which you are developing.
+
+NOTE: The adjective "external" refers to other routines in kernel space using
+module's capabilities. Obviously no program in user space can directly access
+these routines. Hence, "external" must be intended as "in kernel but not in
+the lcd-linux module".
+
+Available functions for external use:
+- int lcd_register_driver(struct lcd_driver *driver, struct lcd_parameters *par)
+	do the following three actions:
+	(1) register the driver described by the "driver" struct with parameters
+	    in the "par" struct, in the table of lcd drivers;
+	(2) initialize the communication port between computer and display;
+	    initialize the display;
+	(3) create a directory with the driver's name in /proc/lcd (if the proc
+	    filesystem is supported) with the "framebuffer", "display" and
+	    "charmap.h" files;
+	return 0 on success;
+	return a negative errno code on failure;
+	after this function has successfully returned the device is fully
+	operative.
+
+- int lcd_unregister_driver(struct lcd_driver *driver, struct lcd_parameters *par)
+	do the following three actions:
+	(1) unregister the driver described by the "driver" struct with
+	    parameters in the "par" struct, in the table of lcd drivers;
+	(2) reset the display;
+	    reset the communication port between computer and display;
+	(3) delete the /proc/lcd/"drivername" entry with the "framebuffer",
+	    "display" and "charmap.h" files; any proc file created by the lcd
+	    driver is not deleted; it is up to the cleanup function of the
+	    driver to delete its own proc files before calling
+	    lcd_unregister_driver();
+	return 0 on success;
+	return a negative errno code on failure;
+
+- int lcd_open(unsigned short minor, struct lcd_struct **pp)
+	open the device with minor number 'minor' and return the  pointer to the
+	lcd_struct associated with that minor number in *pp; this pointer is to
+	be passed to all subsequent lcd_...() functions;
+	returns 0 on success;
+	returns a negative errno code on failure;
+
+-int lcd_close(struct lcd_struct **pp)
+	close the device previously opened by lcd_open(), described by the
+	lcd_struct *pp; after successful close we have *pp = NULL
+	returns 0 on success;
+	returns a negative errno code on failure;
+
+linux > 2.2.0:
+- ssize_t lcd_write(struct lcd_struct *p, const void *buffer, size_t length, loff_t offset, unsigned int with_attr)
+linux < 2.2.0:
+- int lcd_write(struct lcd_struct *p, const void *buffer, int length, loff_t offset, unsigned int with_attr)
+	write up to "length" bytes from the buffer "buffer" to the LCD display
+	described by the struct *p as returned by lcd_open(), starting  at
+	offset "offset"; "buffer" is a void * pointer, that may be treated
+	either as a unsigned short * ("with_attr" != 0) or  unsigned char *
+	("with_attr == 0"); if ("with_attr" != 0) then lcd_write() will also
+	consider the attributes of the character being written
+	On success the numbers of characters written are returned (zero
+	indicates nothing was written).
+	On error the appropriate negative errno code is returned.
+
+linux > 2.2.0:
+- ssize_t lcd_read(struct lcd_struct *p, void *buffer, size_t length, loff_t offset, unsigned int with_attr)
+linux < 2.2.0:
+- int lcd_read(struct lcd_struct *p, void *buffer, int length, loff_t offset, unsigned int with_attr)
+	attempt to read up to "length" bytes from the LCD display described by
+	the struct *p as returned by lcd_open(), into the buffer "buffer"
+	starting at offset "offset"; "buffer" is a void * pointer, that may be
+	treated either as a unsigned short * ("with_attr" != 0) or  unsigned
+	char * ("with_attr == 0"); if ("with_attr" != 0) then lcd_read() will
+	also read the attributes of the character being read	
+	On success the numbers of characters read are returned (zero indicates
+	nothing was read).
+	On error the appropriate negative errno code is returned.
+
+- int lcd_ioctl(struct lcd_struct *p, unsigned int ioctl_command, ...)
+	lcd_ioctl executes the ioctl with number "ioctl_command" and an optional 
+	parameter "ioctl_param", sending commands to the LCD display described
+	by the struct *p as returned by lcd_open(); 
+	currently the following ioctls are supported:
+
+	LCDL_SET_PARAM		set the parameters contained in the struct
+				lcd_driver and reset the device
+				typeof (ioctl_param) = struct lcd_driver *
+
+	LCDL_GET_PARAM		get the current parameters into the struct
+				lcd_driver
+				typeof (ioctl_param) = struct lcd_driver *
+
+	LCDL_RESET_CHARMAP	reset the character map to a one to one
+				correspondence with the controller character map
+				no parameters
+				cannot fail (always return 0)
+
+	LCDL_CHARSUBST		perform character mapping
+				typeof (ioctl_param) = unsigned char [2]
+				ioctl_param[0] = the original character to be
+						 substituted
+				ioctl_param[1] = the new character that
+						 substitutes the old one
+				cannot fail (always return 0)
+
+	LCDL_SAVE_CHARMAP	save the current character map
+				no parameters
+				cannot fail (always return 0)
+
+	LCDL_RESTORE_CHARMAP	restore a previously saved character map
+				no parameters
+				cannot fail (always return 0)
+
+	LCDL_SWAP_CHARMAP	exchange the current character map with a
+				previously saved one
+				no parameters
+				cannot fail (always return 0)
+
+	LCDL_RAW_MODE		enter raw mode: characters are directly sent to
+				the display, only charmap translation but no
+				control character interpretation is performed
+				typeof (ioctl_param) = unsigned long
+				ioctl_param != 0 ---> RAW mode
+				ioctl_param == 0 ---> NORMAL mode
+				cannot fail (always return 0)
+
+	LCDL_CLEAR_DISP		clear the display
+				no parameters
+				cannot fail (always return 0)
+
+	LCDL_SET_CGRAM_CHAR	create new characters using the cgram;
+				the number of bytes to write is in the
+				lcd_parameters definition of the driver;
+				typeof (ioctl_param) = unsigned char *
+				ioctl_param[0] = index of the cgram character
+				ioctl_param+1 = the buffer to read from
+
+	LCDL_GET_CGRAM_CHAR	read characters from the cgram; the number
+				of bytes to read is in the lcd_parameters
+				definition of the driver;
+				typeof (ioctl_param) = unsigned char *
+				ioctl_param[0] = index of the cgram character
+				ioctl_param+1 = the buffer to write to
+
+	LCDL_SET_CHARMAP	copy 256 bytes from the buffer pointed by
+				ioctl_param into the internal charmap
+				typeof (ioctl_param) = unsigned char *
+
+	LCDL_GET_CHARMAP	copy 256 bytes from the internal charmap into
+				the buffer pointed by ioctl_param
+				typeof (ioctl_param) = unsigned char *
+
+	LCDL_MEMSET		memset for lcd operations:
+				set 'ioctl_param[2]' characters to the
+				supplied value 'ioctl_param[1]' starting at
+				offset 'ioctl_param[0]'
+				typeof (ioctl_param) = int [3]
+				ioctl_param[0] = destination offset on the lcd
+				ioctl_param[1] = character with attributes
+				ioctl_param[2] = number of characters to write
+
+	LCDL_MEMMOVE		memmove for lcd operations:
+				move 'ioctl_param[2]' characters from offset
+				'ioctl_param[1]' to offset 'ioctl_param[0]' in
+				a non destructive way; offsets may overlap;
+				typeof (ioctl_param) = int [3]
+				ioctl_param[0] = destination offset on the lcd
+				ioctl_param[1] = source offset on the lcd
+				ioctl_param[2] = number of characters to move
+
+	LCDL_IOATTR		allow input/output of attributes:
+				when ioctl_param != 0 each character is followed
+				by the corresponding attribute both in reading
+				and writing operations
+				typeof (ioctl_param) = unsigned long
+				ioctl_param == 0 ---> only characters
+				ioctl_param != 0 ---> characters and attributes
+
+	other ioctl calls are passed to the lcd driver by calling
+	handle_custom_ioctl()  (if defined)
+
+	returns 0 on success;
+	returns a negative errno code on failure.
+
+
+Structures:
+
+struct lcd_parameters {
+	const char	*name;		/* Driver's name */
+	unsigned long	flags;		/* Flags */
+	unsigned short	minor;		/* Minor number of the char device */
+	unsigned short	tabstop;	/* Tab character length */
+	unsigned short	num_cntr;	/* Controllers to drive */
+	unsigned short	cntr_rows;	/* Rows per controller */
+	unsigned short	cntr_cols;	/* Display columns */
+	unsigned short	vs_rows;	/* Virtual screen rows */
+	unsigned short	vs_cols;	/* Virtual screen columns */
+	unsigned short	cgram_chars;	/* Number of user definable characters */
+	unsigned short	cgram_bytes;	/* Number of bytes required to define a
+					 * user definable character */
+	unsigned char	cgram_char0;	/* Ascii of first user definable character */
+};
+
+struct lcd_driver {
+	/* read normal characters (optional) */
+	void	(*read_char)(unsigned int offset, unsigned short *data);
+
+	/* read cgram characters (optional) */
+	void	(*read_cgram_char)(unsigned char index, unsigned char *pixmap);
+
+	/* write normal characters (mandatory) */
+	void	(*write_char)(unsigned int offset, unsigned short data);
+
+	/* write cgram characters (optional) */
+	void	(*write_cgram_char)(unsigned char index, unsigned char *pixmap);
+
+	/* clear the display content (optional) */
+	void	(*clear_display)(void);
+
+	/* set the display increment/decrement address mode (optional) */
+	void	(*address_mode)(int mode);
+
+	/* check for consistency of the driver parameters (optional) */
+	int	(*validate_driver)(void);
+
+	/* initialize the display (optional) */
+	int	(*init_display)(void);
+
+	/* cleanup the display (optional) */
+	int	(*cleanup_display)(void);
+
+	/* initialize the communication port (mandatory) */
+	int	(*init_port)(void);
+
+	/* cleanup the communication port (mandatory) */
+	int	(*cleanup_port)(void);
+
+	/* handle custom escape sequences (optional) */
+	int	(*handle_custom_char)(unsigned int data);
+
+	/* handle custom ioctl (optional) */
+	int	(*handle_custom_ioctl)(unsigned int cmd, unsigned long arg, 
+				unsigned int arg_in_userspace);
+
+	/* The character map to be used (optional) */
+	unsigned char *charmap;
+
+	/* Buffer for CGRAM operations.
+	 * Will be filled by the lcd-linux layer.
+	 */
+	unsigned char *cgram_buffer;
+
+	/* The proc root directory where the driver can create its own proc
+	 * files. Will be filled by the lcd-linux layer. (Linux 2.2 or later)
+	 */
+	struct proc_dir_entry *driver_proc_root;
+
+	/* Set this field to 'driver_module_init' or call 
+	 * lcd_driver_setup(struct lcd_driver *pointer_to_this_driver) 
+	 * just before registering the driver with lcd_register_driver().
+	 * (Linux 2.2 or later)
+	 */
+	struct module *driver_module;
+};
+
+The last two fields are present only when using Linux 2.2.0 or later.
+
+"Mandatory" means that the function MUST be defined for the lcd-linux layer to
+work properly. If the function does not apply to your case, define an empty
+function.
+
+"Optional" means that the lcd-linux layer uses this function only if it is
+defined. If not either a built-in replacement is used or the function is
+skipped.
