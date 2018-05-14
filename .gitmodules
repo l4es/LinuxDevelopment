@@ -181,3 +181,12 @@
 [submodule "Common/Examples/kservo"]
 	path = Common/Examples/kservo
 	url = https://github.com/claudyus/kservo.git
+[submodule "BBxM/LDD/SPI-Device-Driver"]
+	path = BBxM/LDD/SPI-Device-Driver
+	url = https://github.com/sidroopdaska/SPI-Device-Driver.git
+[submodule "BBxM/LDD/BB-GPS-LinuxDriver"]
+	path = BBxM/LDD/BB-GPS-LinuxDriver
+	url = https://github.com/MarcosCM/BB-GPS-LinuxDriver.git
+[submodule "BBxM/LDD/BB-GPS-lib"]
+	path = BBxM/LDD/BB-GPS-lib
+	url = https://github.com/MarcosCM/BB-GPS-lib.git
