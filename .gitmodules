@@ -208,3 +208,6 @@
 [submodule "Common/Examples/cp2130"]
 	path = Common/Examples/cp2130
 	url = https://github.com/Henneberg-Systemdesign/cp2130.git
+[submodule "Common/Examples/i2c-ch341-usb"]
+	path = Common/Examples/i2c-ch341-usb
+	url = https://github.com/allanbian1017/i2c-ch341-usb.git
