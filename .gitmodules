@@ -130,3 +130,6 @@
 [submodule "Common/Examples/multiplexing-io"]
 	path = Common/Examples/multiplexing-io
 	url = https://github.com/dev-area/Multiplexing-IO.git
+[submodule "Ev3Dev/lego-linux-drivers"]
+	path = Ev3Dev/lego-linux-drivers
+	url = https://github.com/ev3dev/lego-linux-drivers.git
