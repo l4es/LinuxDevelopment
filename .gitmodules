@@ -199,3 +199,12 @@
 [submodule "Common/Examples/eltt2"]
 	path = Common/Examples/eltt2
 	url = https://github.com/Infineon/eltt2.git
+[submodule "Common/Examples/mcp2210-linux"]
+	path = Common/Examples/mcp2210-linux
+	url = https://github.com/daniel-santos/mcp2210-linux.git
+[submodule "Common/Examples/spi-ch341-usb"]
+	path = Common/Examples/spi-ch341-usb
+	url = https://github.com/gschorcht/spi-ch341-usb.git
+[submodule "Common/Examples/cp2130"]
+	path = Common/Examples/cp2130
+	url = https://github.com/Henneberg-Systemdesign/cp2130.git
