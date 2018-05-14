@@ -190,3 +190,12 @@
 [submodule "BBxM/LDD/BB-GPS-lib"]
 	path = BBxM/LDD/BB-GPS-lib
 	url = https://github.com/MarcosCM/BB-GPS-lib.git
+[submodule "Common/Examples/daxc02"]
+	path = Common/Examples/daxc02
+	url = https://github.com/DaxBot/daxc02.git
+[submodule "Common/Examples/daxc03"]
+	path = Common/Examples/daxc03
+	url = https://github.com/DaxBot/daxc03.git
+[submodule "Common/Examples/eltt2"]
+	path = Common/Examples/eltt2
+	url = https://github.com/Infineon/eltt2.git
