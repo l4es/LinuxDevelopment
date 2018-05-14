@@ -133,3 +133,51 @@
 [submodule "Ev3Dev/lego-linux-drivers"]
 	path = Ev3Dev/lego-linux-drivers
 	url = https://github.com/ev3dev/lego-linux-drivers.git
+[submodule "Common/Examples/pixel_keyboard_backlight_driver"]
+	path = Common/Examples/pixel_keyboard_backlight_driver
+	url = https://github.com/xhcnb/pixel_keyboard_backlight_driver.git
+[submodule "Common/Examples/embedded-sgp"]
+	path = Common/Examples/embedded-sgp
+	url = https://github.com/Sensirion/embedded-sgp.git
+[submodule "Common/Examples/embedded-sht"]
+	path = Common/Examples/embedded-sht
+	url = https://github.com/Sensirion/embedded-sht.git
+[submodule "Common/Examples/sfxx"]
+	path = Common/Examples/sfxx
+	url = https://github.com/Sensirion/sfxx.git
+[submodule "Common/Examples/epics-f3rp61"]
+	path = Common/Examples/epics-f3rp61
+	url = https://github.com/EPICS-F3RP61/epics-f3rp61.git
+[submodule "Common/Examples/nxprdlib-kernel-bus-abstraction-layer"]
+	path = Common/Examples/nxprdlib-kernel-bus-abstraction-layer
+	url = https://github.com/christianeisendle/nxprdlib-kernel-bal.git
+[submodule "Common/Examples/nxp-pn5xx"]
+	path = Common/Examples/nxp-pn5xx
+	url = https://github.com/NXPNFCLinux/nxp-pn5xx.git
+[submodule "Common/Examples/pwm-servo"]
+	path = Common/Examples/pwm-servo
+	url = https://github.com/maciejjo/pwm-servo.git
+[submodule "Common/Examples/tb6612"]
+	path = Common/Examples/tb6612
+	url = https://github.com/maciejjo/tb6612.git
+[submodule "Common/Examples/iio-drivers"]
+	path = Common/Examples/iio-drivers
+	url = https://github.com/cthil/iio-drivers.git
+[submodule "Common/Examples/tsl2561"]
+	path = Common/Examples/tsl2561
+	url = https://github.com/lexruee/tsl2561.git
+[submodule "Common/Examples/am2315"]
+	path = Common/Examples/am2315
+	url = https://github.com/lexruee/am2315.git
+[submodule "Common/Examples/mpl115a2"]
+	path = Common/Examples/mpl115a2
+	url = https://github.com/lexruee/mpl115a2.git
+[submodule "Common/Examples/mcp9808"]
+	path = Common/Examples/mcp9808
+	url = https://github.com/lexruee/mcp9808.git
+[submodule "Common/Examples/bmp180"]
+	path = Common/Examples/bmp180
+	url = https://github.com/lexruee/bmp180.git
+[submodule "Common/Examples/kservo"]
+	path = Common/Examples/kservo
+	url = https://github.com/claudyus/kservo.git
