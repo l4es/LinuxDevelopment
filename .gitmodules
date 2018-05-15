@@ -211,3 +211,9 @@
 [submodule "Common/Examples/i2c-ch341-usb"]
 	path = Common/Examples/i2c-ch341-usb
 	url = https://github.com/allanbian1017/i2c-ch341-usb.git
+[submodule "Parallella/BSP/epiphany-bsp"]
+	path = Parallella/BSP/epiphany-bsp
+	url = https://github.com/coduin/epiphany-bsp.git
+[submodule "Parallella/BSP/epiphany-bsp-cpp-example"]
+	path = Parallella/BSP/epiphany-bsp-cpp-example
+	url = https://github.com/coduin/epiphany-bsp-cpp-example
