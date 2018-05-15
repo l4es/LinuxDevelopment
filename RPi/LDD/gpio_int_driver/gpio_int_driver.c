@@ -143,6 +143,6 @@ module_exit(gpio_int_cleanup);
 /****************************************************************************/
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Vergil Cola <vpcola@gmail.com>");
-MODULE_AUTHOR("Pascal Le Boudin <fxrdude@gmail.com>")
+MODULE_AUTHOR("Pascal Le Boudin <fxrdude@gmail.com>");
 MODULE_DESCRIPTION("Sample GPIO Interrupt Handler");
 

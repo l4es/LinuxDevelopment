@@ -277,7 +277,7 @@ module_exit(pix_exit);
 /* Module licensing/description block.                                      */
 /****************************************************************************/
 MODULE_LICENSE("GPL");
-MODULE_AUTHOR("Michał Kalbarczyk <fazibear@gmail.com>")
-MODULE_AUTHOR("Pascal Le Boudin <fxrdude@gmail.com>")
+MODULE_AUTHOR("Michał Kalbarczyk <fazibear@gmail.com>");
+MODULE_AUTHOR("Pascal Le Boudin <fxrdude@gmail.com>");
 MODULE_DESCRIPTION("Threaded Led Matrix Driver");
 
