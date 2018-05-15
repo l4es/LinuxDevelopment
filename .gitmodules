@@ -229,3 +229,9 @@
 [submodule "Common/Examples/ipvr-vaapi-driver"]
 	path = Common/Examples/ipvr-vaapi-driver
 	url = https://github.com/01org/ipvr-vaapi-driver.git
+[submodule "Common/Examples/LMS7002M-driver"]
+	path = Common/Examples/LMS7002M-driver
+	url = https://github.com/myriadrf/LMS7002M-driver.git
+[submodule "Common/Examples/gsmmux"]
+	path = Common/Examples/gsmmux
+	url = https://github.com/ya-jeks/gsmmux.git
