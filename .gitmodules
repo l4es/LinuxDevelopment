@@ -220,3 +220,12 @@
 [submodule "Next4000/netx4000-linux-bsp"]
 	path = Next4000/netx4000-linux-bsp
 	url = https://github.com/Hilscher/netx4000-linux-bsp.git
+[submodule "Common/Examples/intel-camera-drivers"]
+	path = Common/Examples/intel-camera-drivers
+	url = https://github.com/01org/intel-camera-drivers.git
+[submodule "Common/Examples/intel-hybrid-driver"]
+	path = Common/Examples/intel-hybrid-driver
+	url = https://github.com/01org/intel-hybrid-driver.git
+[submodule "Common/Examples/ipvr-vaapi-driver"]
+	path = Common/Examples/ipvr-vaapi-driver
+	url = https://github.com/01org/ipvr-vaapi-driver.git
