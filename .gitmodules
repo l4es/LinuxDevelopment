@@ -235,3 +235,6 @@
 [submodule "Common/Examples/gsmmux"]
 	path = Common/Examples/gsmmux
 	url = https://github.com/ya-jeks/gsmmux.git
+[submodule "Common/Examples/uwb_uwb2can"]
+	path = Common/Examples/uwb_uwb2can
+	url = https://github.com/yuq/uwb_uwb2can.git
