@@ -18,13 +18,11 @@ class Client {
   public:
     Client();
     virtual ~Client();
-    void setName(const char *name);
-    char* getName();
-    void setSocket(int socket);
-    int getSocket();
     void setId(int id);
     int getId();    
-
+    void setSocket(int socket);
+    int getSocket();
+ 
     bool m_IsConnected;
 };
 

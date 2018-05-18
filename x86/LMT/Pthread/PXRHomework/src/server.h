@@ -1,5 +1,5 @@
-#ifndef __SERVER_H__
-#define __SERVER_H__
+#ifndef _SERVER_H_
+#define _SERVER_H_
 
 #include <iostream>
 #include <vector>
@@ -10,11 +10,10 @@
 
 #include <sys/socket.h>
 #include <netinet/in.h>
+ #include <arpa/inet.h> 
 
 #include "customthread.h"
 #include "client.h"
-
-#define PORT 30666
 
 using namespace std;
 
@@ -24,18 +23,24 @@ class Server {
     static vector<Client> m_Clients;
 
     //Socket stuff
+    int m_Port;
+    char *m_IpAddr;
     int m_ServerSock;
     int m_ClientSock;
     struct sockaddr_in m_ServerAddr;
     struct sockaddr_in m_ClientAddr;
-    char buff[256];
+//    char m_Buff[256];
 
   public:
-    Server();
-    void acceptAndDispatch();
+    Server(int port, char * ip);
+    virtual ~Server();
+
+    void dispatchConnection();
     static void * handleClient(void *args);
 
   private:
+    Server();
+
     static void sendToAll(char *message);
     static void addClient(Client *c);
     static void removeClient(Client *c);

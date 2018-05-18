@@ -21,7 +21,7 @@ int CustomThread::create(void *callback, void *args) {
     return ret;
   }
   else {
-    cout << "Thread successfully created." << endl;
+ //   cout << "Thread successfully created." << endl;
     return 0;
   }
 }
@@ -38,15 +38,15 @@ int CustomThread::initMutex() {
     return -1;
   }
   else {
-    cout << "Mutex initialized." << endl;
+//    cout << "Mutex initialized." << endl;
     return 0;
   }
 }
 
 int CustomThread::lockMutex(const char *identifier) {
-  cout << identifier << " is trying to acquire the lock..." << endl;
+//  cout << identifier << " is trying to acquire the lock..." << endl;
   if(pthread_mutex_lock(&CustomThread::m_Mutex) == 0) {
-    cout << identifier << " acquired the lock!" << endl;
+//    cout << identifier << " acquired the lock!" << endl;
     return 0;
   }
   else {
@@ -56,9 +56,9 @@ int CustomThread::lockMutex(const char *identifier) {
 }
 
 int CustomThread::unlockMutex(const char *identifier) {
-  cout << identifier << " is trying to release the lock..." << endl;
+ // cout << identifier << " is trying to release the lock..." << endl;
   if(pthread_mutex_unlock(&CustomThread::m_Mutex) == 0) {
-    cout << identifier << " released the lock!" << endl;
+//    cout << identifier << " released the lock!" << endl;
     return 0;
   }
   else {
