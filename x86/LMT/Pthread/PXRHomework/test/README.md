@@ -122,8 +122,8 @@ Sending HALOO  ...
 2.d. Test multiple connections in parallel for rubustness test
 Console 1: $./run_server.sh
 ==========
-// TBD
+// There's to much log to observe
 
 Console 2: $./run_client_parallel.sh
 ==========
-// TBD
+// There's to much log to observe
