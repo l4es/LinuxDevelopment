@@ -1,0 +1,15 @@
+#!/bin/sh
+
+# Just a dumb script copying some nice system information values
+# to our LCD device
+
+echo -n -e "\33c" > /dev/lcd
+
+while true; do
+  echo -n -e "\33h"
+  date "+%T %a %b %d"
+  uptime | cut -d " " -f 16,17,18
+#  echo -n -e "\377"
+#  cat /proc/meminfo |fgrep "MemFree"|cut -d " " -f 1,8
+  sleep 10
+done > /dev/lcd

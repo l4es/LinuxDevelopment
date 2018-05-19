@@ -1,0 +1,9 @@
+#!/bin/sh
+if [ -e /dev/lcd ]; then
+  echo "/dev/lcd already exists, doing nothing"
+  echo "Please check if it has major 120 and minor 0"
+else
+  echo "Creating device /dev/lcd"
+  mknod /dev/lcd c 120 0
+  echo "done"
+fi

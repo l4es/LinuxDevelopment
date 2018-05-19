@@ -1,0 +1,18 @@
+Demo programs for self defined characters
+-----------------------------------------
+
+To build the programs just type 'make'.
+
+
+wave:
+	To run just type
+		./wave > /dev/lcd
+	It will display a sine-wave scrolling from right to left using
+	vertical bar graph characters to have a smoother wave. The waiting
+	time between each frame is by default 60000 Micro seconds which is
+	quite fast. You can specify another time value on the commandline
+	just by
+		./wave 250000 > /dev/lcd
+	which is quite slow.
+
+

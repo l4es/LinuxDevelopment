@@ -1,0 +1,49 @@
+V0.153, 30. September 2000
+------
+ all Changes by Juergen Bauer: jb@idowa.net
+
+ - Added posibility for using modulparameters:
+   lines for number of lines, cols for number of cols,
+   io for io_adress of LPT-Port, t_short and t_long to controll the timing
+ - new Cursormodes: on, blinking, underline, off
+ - removed: hardware.h we donot need it anymore. We can use modulparameters
+ - new in tools/ isdn_rate. It shows the downloadrate of the isdn interface
+
+V0.152, 15. June 1999
+------
+ - Added new delay function in order to reduce system-load. It will call
+   schedule() in order to let other processes run on longer delays. This
+   saves just 0.1% CPU time on my 533MHz Alpha. Maybe this can be more on
+   other machines.
+ - Minor driver change for proper compiling with 2.0.* kernels (oops ;)
+ - Added some Makefile additions for the driver and a new program in the
+   tools/ directory (lcdtime).
+   Thanks go to Chris <chris@obelix.bene.dabay.net> for this!
+
+V0.151, 3. June 1999
+------
+ - Some minor driver changes
+ - Added a graphics demo program tools/graphics/wave (animated sine wave)
+ - Added 'work in progress' tools/lcd-util/ directory (have a look)
+
+V0.15, 1. June 1999
+-----
+ - Finally user definable characters are here!
+   Have a look at the drive's README for details and tools/defchars
+   for examples
+ - Updated proclcd to use horizontal bar characters
+
+V0.14, 30. May 1999
+-----
+ - Some cleanups
+ - Minor changes in driver
+ - included 'proclcd' sources as programming example
+
+V0.13
+-----
+ - Updated for Kernel 2.1.* and 2.2.*
+ - Fixed some bugs in wiring docs
+
+V0.01
+-----
+ - Initial driver code, first version

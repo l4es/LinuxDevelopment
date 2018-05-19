@@ -1,0 +1,7 @@
+
+address	Bits    DB25    function
+0x3bc	Bit 0-7	2-9	Data
+0x3be	Bit 0	1	Strobe
+            1	14	Auto-Feed
+            2	16	Init (invert)
+            3	17	Select

@@ -1,0 +1,20 @@
+
+
+		WORK IN PROGRESS !
+	Don't complain, you have been warned ;)
+
+This will become the place for some utilities and support functions for the
+LCD display module driver. At the moment the only useful thing is
+  textrun.c
+which exports a function scrolling a textstring by a defined amount of
+characters like
+  Hallo
+  alloH
+  lloHa
+  loHal
+  oHall
+  Hallo
+
+Have fun!
+Any additions are always welcome...
+

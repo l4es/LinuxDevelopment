@@ -1,0 +1,12 @@
+
+nice
+----
+
+Sample script to display time, date and system load
+
+Just type 'nice' to start it.
+It is just intended as a demo script, nothing more.
+It sucks system load because many shell tools are involved to produce the
+output. If you want to have such a display I recommend using 'proclcd' also
+found in this distribution.
+

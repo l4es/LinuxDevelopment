@@ -1,0 +1,14 @@
+
+proclcd V0.2
+------------
+
+Proclcd shows some system status on the LCD panel.
+It is intended for a 4x20 display. For other sizes feel free to change the
+code, but please send me your changes ;)
+Just typing 'make' will build the program itself.
+To run it simply do
+  proclcd > /dev/lcd
+
+I usually install it in my rc.local file:
+  nice /usr/local/bin/proclcd > /dev/lcd &
+

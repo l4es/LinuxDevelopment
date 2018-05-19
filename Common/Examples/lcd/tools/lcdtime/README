@@ -1,0 +1,23 @@
+Display the time on an Hitachi-2x16-LCD-Display connected to your
+computer's parport. This is IBM-PC-specific and uses
+the driver from
+
+ http://www.unix-ag.uni-siegen.de/~nils/lcd.html
+
+On the LCD, it looks like this:
+
+  Time  Date
+ +----------------+
+ |21:23 13. Jun 99|
+ |@807.6 Sunday   |
+ +----------------+
+  Beats  Weekday
+
+Time and date are in your local timezone.
+ 
+`Beats' is some silly marketing-idea from swatch,
+which they call the `Internet time'. Essentially they
+divide a day in 1000 intervals and you can calculate
+B=(H*60+M)/1.44 with H,M hour and minute GMT.
+
+	Chris <chris@obelix.bene.dabay.net>

@@ -1,0 +1,5 @@
+
+# 
+for i in $@; do
+  (mpg123 -b 128 -v "$i" 2>&1 | ./mpg123filt "`basename "$i" .mp3`" > /dev/lcd)
+done

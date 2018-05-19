@@ -1,0 +1,99 @@
+KEYPAD addon for the LCD Panel driver.
+
+With this path you can control a keypad with 4 keys conected to the partport.
+
+Hardware:
+
+	
+       	_________ +5v
+DB25    | | | |
+pins    R R R R 4x 4k7
+        | | | |
+10  --- + | | |
+11  ----- + | |
+12  ------- + |
+13  --------- +
+        | | | |
+       	\ \ \ \  keys A B C D
+       	| | | |
+        +-+-+-+--- GND
+
+
+
+
+
+Software control:
+
+The module has a new parameter keys. If this parameter is 1 the drive let the user
+read from the lcd device file.
+
+So you must insmod the module with keys=1.
+I use this line to use my lcd:
+
+	/sbin/insmod lcd.o cols=16 lines=2 keys=1
+	
+
+
+When the file is read the driver check ths status of the keys and return a byte with
+the following meaning:
+
+	bit 7 6 5 4 3 2 1 0
+	buttons     D C B A   1=pressed 0=released
+
+You can check the status of the keys with the following code:
+
+	lcd = open("/dev/lcd",O_RDWR);
+	read(lcd,&buttons,1);
+	if ( buttons & 1 )
+	{
+		/* A pressed */	
+	}
+	if ( buttons & 2 )
+	{
+		/* B pressed */
+	}
+	if ( buttons & 4 )
+	{
+		/* C pressed */
+	}
+	if ( buttons & 8 )
+	{
+		/* D pressed */
+	}
+	    
+
+New IOCTL interface.
+	To use the ioctl command you must to include in your programm the "lcd.h"
+
+	IOC_WAIT_KEY wait for a keypad change and return as parameter the keypad 
+	event with the following structure:
+
+		bit 4 = 1 pressed
+		    4 = 0 released
+		bit0 - bit3 number of the key (A=0,B=1,C=2,D=3)		
+
+	Example:
+	
+		unsigned char event;
+		int ret;
+		int lcd;
+		lcd = open("/dev/lcd",O_RDWR);
+		ret = ioctl(lcd,IOC_WAIT_KEY,&event);
+
+	IOC_CMD send a command to the LCD, it has the same funcionality as to 
+	write the \ESCcommand to the lcd file device.
+	This ioctl only implement the following commands:
+	  'c'  - Clear display
+	  'h'  - Home cursor
+	  'R'  - Reset display
+	  'b'  - Cursor on and blinking
+	  'B'  - Cursor on, not blinking
+	  'k'  - Cursor on, not blinking
+	  'K'  - Cursor off
+
+	For example to clear the display with
+		ret = ioctl(lcd,IOC_CMD,'c');
+
+
+
+

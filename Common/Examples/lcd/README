@@ -1,0 +1,13 @@
+
+LCD Panel driver for Hitachi controlled LCD display panels connected to the
+parallel port (and many compatible modules).
+
+http://www.unix-ag.uni-siegen.de/~nils/lcd.html
+
+Please send any patches, additions or comments directly to
+
+  nils@unix-ag.org
+
+I will happily include anything that looks remotely usable ;)
+(and give anyone full credit of course...)
+

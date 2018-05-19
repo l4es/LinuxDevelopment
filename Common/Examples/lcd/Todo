@@ -1,0 +1,10 @@
+ - implement more modes, i.e. double hight characters, other cursors,...
+ - I am unsure about the way I have done the needed delays. The LCD modules
+   are very picky about them, i.e. data may in no case be sent too fast to
+   it or you'll loose it. Currently the delays are done using the udelay()
+   kernel function. AFAIK this does busy waiting but I do not know exactly.
+   If anyone has a better way PLEASE let me know!
+ - Implement some way to have buttons attached to the display module to do
+   some controls. I plan to add an interrupt handler to the driver and use
+   the four still unused input lines of the parallel port for 7 buttons and
+   one interrupt line. Any help welcome!

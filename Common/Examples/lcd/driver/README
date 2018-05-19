@@ -1,0 +1,207 @@
+Hardware
+--------
+This is for a 20 x 4 character LCD display based on the Hitachi HD44780
+controller. Additional displays with other geometries should be suppported by
+setting LCD_COLS and LCD_LINES correctly. The display can easily be wired to
+a standard PC parallel port. Just connect the eight data bits to the eight
+inputs of the display plus STROBE (pin 1 on 25 pin Sub-D) to EN (enable) and
+FEED (pin 14 on 25 pin Sub-D) to RS (command-/datamode). You will also have
+to connect GND to the read/write selector input. The driver does not need to
+read from the display so we can hard-wire the write mode. Don't forget to add
+at least one GND line. The +5V power supply for the display can easily be
+obtained from a game-port adapter or drive power supply connector.
+
+        25 pin		LCD
+        SUB D		Panel	Pin
+        ---------------------------
+        18-25		GND	   --+
+        		GND	1  --+--- \ Connect to
+        		+5V	2  --|--- / Gameport
+        		R/W	5  --+
+        1		EN	6
+        2		DB1	7
+        3		DB2	8
+        4		DB3	9
+        5		DB4	10
+        6		DB5	11
+        7		DB6	12
+        8		DB7	13
+        9		DB8	14
+        14		RS	4
+
+Pin 3 on the LCD is the LCD driver control voltage input, i.e. contrast
+regulation. My display shows very good contrast when wired directly to
+GND. Other display may need a real driver current. You can use a
+variable resistor (>= 20 kOhm) to do it like this
+
+  +5V ---+
+         /
+         \ <--+
+         /    |
+         \    |
+  GND ---+    +--- VL (Pin 3 - driver input)
+
+The PC game port offers several +5V lines that can be used as power supply.
+You can use
+  DB15 pins 1,8,9 or 15 for +5V
+            4,5 or 12   for GND
+
+But please try to verify this for your hardware because some soundcards may
+carry additional signals like a Midi port on those lines.
+A floppy or harddisk power connector serves also as power supply. Here use
+the red wire (+5V) and the black wire (GND). CAUTION: The yellow wire
+carries +12V which would toast your display immediately and may also damage
+your parallel port!
+
+
+Installation / compilation
+--------------------------
+Choose the correct definition for Kernel 2.0.* or Kernel 2.1.* (use
+  -DKERNEL21 for Kernel 2.2.* too). For kernel 2.4 set this to
+  -DKERNEL21 -DKERNEL24
+
+Now just type 'make' to build the module.
+
+Create a character device major 120 minor 0, you may choose to use the
+included script 'mkdevice' for this which creates /dev/lcd.
+
+'insmod' the module without any options if you want the defaults:
+  I/O address     0x378 (first parallel port on most PCs)
+  Columns            20
+  Lines               4
+  Short timing       40
+  Long timing       100
+  Addressing type     0 (HD44780 and compatible controllers)
+
+You can override them with these parameters: 
+  io      for io_address of the parallel port 
+  cols    for number of columns:  Only 16,20,24,32 and 40 are valid
+  lines   for number of lines: Only 1,2 and 4 are valid
+  t_short Short Display Timing. Standard is:  40
+  t_long  Long Display Timing.  Standard is: 100
+  a_type  Addressing type. Standard is: 0. Possible values are 0 for standard
+          HD44780 controller types and 1 for HD66712 controllers.
+  w_mode  Allows to use the winamp style wiring using w_mode=1,
+          w_mode=0 selects the original style (default)
+ 
+The device is initialized (set initial mode, clear display, turn display on)
+when the driver module is inserted. You should see an underline cursor not
+blinking in the upper left corner.
+
+Now just write text to the device, done ;)
+German "Umlaut" characters are mapped correctly. Additional mappings can be
+done in "c_table.h".
+
+Valid ESC commands:
+  ESC c   - Clear display
+  ESC h   - Home cursor
+  ESC R   - Reset display
+  ESC b   - Cursor on and blinking
+  ESC B   - Cursor on, not blinking
+  ESC k   - Cursor on, not blinking
+  ESC K   - Cursor off
+  ESC g   - Goto xy
+  ESC #   - Define user definable char number # (characters #0 to #7)
+
+
+Defining a character:
+---------------------
+Characters are organized in 8 bits per row (!) with the three most
+significant bits ignored for displays with 5x7 fonts and 8 rows per
+character. Some displays can also use 5x8 fonts, i.e. the characters may use
+the cursor line. A character is defined as follows:
+
+	D7----D0
+  0	00011111 = 16 + 8 + 4 + 2 + 1		= 31
+  1	00010000				= 16
+  2	00010001 = 16 + 1			= 17
+  3	00011111 = 16 + 8 + 4 + 2 + 1		= 31
+  4	00010001 = 16 + 1			= 17
+  5	00010000				= 16
+  6	00010000				= 16
+  7	00000000				= 0
+
+which creates something similar to a big F.
+To define this character as char number 0 you will have to write the sequence
+
+  27 0 31 16 17 31 17 16 16 0
+
+to the LCD device (which is ESC-0-31-16-17-31-17-16-16-0).
+You can do this from your shell using the echo command with the "-e" switch
+like in
+  echo -n -e "\33\0\37\20\21\37\21\20\20\0" > /dev/lcd
+A subsequent
+  echo -n -e "\0" > /dev/lcd
+will print the new character. The "-n" just suppresses a trailing line-feed.
+
+
+Terminal-like behaviour:
+------------------------
+If during the cursor reaches the right most character during a write the
+cursor is positioned at the beginning of the next line.
+
+Line-feed character (dec 10) causes the cursor to move to the beginning of
+the next line.
+
+Carriage-return (dec 13) causes the cursor to move to the beginning of the
+current line.
+
+
+Further installation
+--------------------
+If you use something like kerneld, i.e. automatically loading modules when
+needed, you might want to copy the driver 'lcd.o' to your modules directory
+and add the following line to your 'conf.modules'
+
+  alias char-major-120 lcd
+
+After that update your module's dependencies by doing 'depmod -a' and the
+module should load automatically when /dev/lcd is accessed.
+
+
+Testing
+-------
+You should have received some test programs with this package. After the
+display is installed and the module is inserted correctly you should be able
+to run them and see the output.
+  test/
+	type 'make' to build a program 'dtest'
+	running './dtest' will at first display a sequence of "12345..." in
+	every line so you can count the number of characters ;) After pressing
+	a key the whole font is displayed filling the whole screen with one
+	character each and going through all characters >=32.
+  tools/scripts/
+	nice		- prints date, time and system-load every ten seconds,
+			  a simple demo for a shell script
+  tools/defchars/
+	horbars		- simple shell script that defines horizontal bargraph
+			  characters
+	vertbars	- simple shell script that defines vertical bargraph
+			  characters
+	printchars	- simple shell script that prints the eight user definable
+			  characters
+  tools/proclcd/
+	proclcd		- C program to print date, time and system load on the display
+			  (if you want something like this use 'proclcd' not 'nice')
+
+
+Usual blah-blah
+---------------
+This driver is incomplete and may crash your machine.
+Wrong wiring may also cause severe damage to the display and to your
+computer. There is also no expressed or implied waranty that it will work with
+your display your computer or both.
+
+The driver is free software but
+  (c) Siegen (Germany) 1998,1999,2000 by Nils Faerber
+  with changes by Juergen Bauer in August/September 2000
+  GNU Public License Version 2 or later applies
+
+
+Thanks go to:
+  Michael Engel - for getting me started with driver programming
+  Graham Stoney - for testing another display and a small fix
+  Juergen Bauer - new module parameters instead of hardware.h,
+                  some clean-ups
+  Ulf Lanz	- for the goto xy function
+ 

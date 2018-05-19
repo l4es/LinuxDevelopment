@@ -1,0 +1,9 @@
+Demo for user definable characters
+----------------------------------
+
+ horbars    - defines 5 characters for horizontal bars from thinnest to
+              thickest
+ vertbars   - defines 8 characters for vertical bars from thinnest to
+              thickest
+ printchars - prints the 8 user defined characters to the display
+

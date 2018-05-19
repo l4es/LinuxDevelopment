@@ -1,0 +1,17 @@
+
+isdn_rate V0.2 by Juergen Bauer jb@idowa.net
+--------------
+
+isdn_rate shows some system status an the isdn-rates for 
+input and output in kb/s and as a bar on the LCD panel.
+It is intended for a 4x20 display. For other sizes feel free to change the
+code, but please send me your changes ;)
+Just typing 'make' will build the program itself.
+To run it simply do
+  isdn_rate > /dev/lcd
+
+I usually install it in my rc.local file:
+  nice /usr/local/bin/isdn_rate > /dev/lcd &
+
+It's major code is from proclcd and parts of KISDN, so please have a look 
+at the source!
