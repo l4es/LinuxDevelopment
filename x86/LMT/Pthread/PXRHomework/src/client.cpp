@@ -34,10 +34,10 @@ bool Client::isConnected() {
   return m_IsConnected;
 }
 
-void Client::connect() {
+void Client::setConnect() {
 	m_IsConnected = true;
 }
 
-void Client::disconnect() {
+void Client::setDisconnect() {
 	m_IsConnected = false;
 }

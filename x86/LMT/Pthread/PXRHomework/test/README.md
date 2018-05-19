@@ -127,4 +127,3 @@ Console 1: $./run_server.sh
 Console 2: $./run_client_parallel.sh
 ==========
 // TBD
-// Note : Currently a SIGPIPE detected by this test on socket send() method

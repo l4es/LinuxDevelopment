@@ -6,10 +6,6 @@ using namespace std;
 //Actually allocate clients
 vector<Client> Server::m_Clients;
 
-Server::Server() {
-
-}
-
 Server::Server(int port, char *ip) : m_Port(port), m_IpAddr(ip) {
 
   //Initialize static mutex from MyThread
@@ -42,7 +38,6 @@ Server::~Server() {
 
 void Server::dispatchConnection() {
   
-  CustomThread *cthread;
 
   socklen_t sockSize = sizeof(sockaddr_in);
 
@@ -55,10 +50,12 @@ void Server::dispatchConnection() {
     }
     else {
       // Assign new task to handle client via this socket
-      cthread = new CustomThread();
+      CustomThread *cthread = new CustomThread();
+
       if (cthread != nullptr) {
         cthread->create((void *) Server::handleClient, &sock);
         cthread->detach(); // Avoid memleak detected by Valgrind for pthread_create()
+
         delete cthread;
 	  }
 	  else {
@@ -79,6 +76,7 @@ void *Server::handleClient(void *args) {
   Client *client = new Client(sock);
   if (client == nullptr) {
 	  cerr << "Error on create new Client(sock)" << endl;
+
 	  //End thread
       return nullptr;
   }
@@ -95,6 +93,7 @@ void *Server::handleClient(void *args) {
     if(n == 0) {
       cout << "Client " << client->getId() << " diconnected" << endl;
       close(client->getSocket());
+      client->setDisconnect();
       
       //Remove client from list
       removeClient(client); 
@@ -116,13 +115,12 @@ void *Server::handleClient(void *args) {
       cout << "<--:" << buffer << endl;
       // First time connected?
       if (client->isConnected() != true) {
-        client->connect();
+        client->setConnect();
         // First message = "HELLO" ?
         if (strcmp(buffer, "HELLO") == 0) {
           snprintf(message, sizeof message, "%s", "HI"); 
           cout << "-->: " << message << endl;
-          int n = send(client->getSocket(), message, strlen(message), 0);
-          cout << n << " bytes sent." << endl;
+          sendToClient(client, message);
  
           // Continue listenning client on the openned socket
           continue;
@@ -132,6 +130,7 @@ void *Server::handleClient(void *args) {
       // Client violates the rule, close it
       cout << "Client " << client->getId() << " violates the rule, close it" << endl;
       close(client->getSocket());
+      client->setDisconnect();
       
       //Remove client from list
       removeClient(client); 
@@ -146,15 +145,26 @@ void *Server::handleClient(void *args) {
   return nullptr;
 }
 
-void Server::sendToAll(char *message) {
-  int n;
+void Server::sendToClient(Client *client, char *message) {
+  //Acquire the lock
+  CustomThread::lockMutex("'sendToClient()'");
 
+    if (client != nullptr && client->isConnected()) {
+      int n = send(client->getSocket(), message, strlen(message), 0);
+      cout << n << " bytes sent." << endl;
+    }
+
+  //Release the lock
+  CustomThread::unlockMutex("'sendToClient()'");
+}
+
+void Server::sendToAll(char *message) {
   //Acquire the lock
   CustomThread::lockMutex("'sendToAll()'");
  
-    for(size_t i=0; i<m_Clients.size(); i++) {
+    for(size_t i=0; i<m_Clients.size() && m_Clients[i].isConnected(); i++) {
       cout << "Sending to client " << m_Clients[i].getId() << endl;
-      n = send(Server::m_Clients[i].getSocket(), message, strlen(message), 0);
+      int n = send(Server::m_Clients[i].getSocket(), message, strlen(message), 0);
       cout << n << " bytes sent." << endl;
     }
    

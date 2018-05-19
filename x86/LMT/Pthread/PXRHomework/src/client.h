@@ -22,8 +22,8 @@ class Client {
     void setSocket(int socket);
     int getSocket();
     bool isConnected();
-    void connect();
-    void disconnect(); 
+    void setConnect();
+    void setDisconnect(); 
 };
 
 #endif

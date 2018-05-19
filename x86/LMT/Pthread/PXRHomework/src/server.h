@@ -38,8 +38,9 @@ class Server {
     static void * handleClient(void *args);
 
   private:
-    Server();
+    Server() {};
 
+    static void sendToClient(Client *client, char *message);
     static void sendToAll(char *message);
     static void addClient(Client *c);
     static void removeClient(Client *c);
