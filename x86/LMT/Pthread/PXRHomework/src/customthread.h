@@ -11,21 +11,20 @@ using namespace std;
 
 class CustomThread {
   public:
-    pthread_t m_ThreadId;
-
-  private:
-    static pthread_mutex_t m_Mutex;
-
-  public:
     CustomThread();
     virtual ~CustomThread();
     int create(void *callback, void *args);
     int join();
     int detach();
 
+	// Some static guard functions, are not really part of this class
     static int initMutex();
     static int lockMutex(const char *identifier);
     static int unlockMutex(const char *identifier);
+
+  private:
+    pthread_t m_ThreadId;
+    static pthread_mutex_t m_Mutex;
 };
 
 #endif
