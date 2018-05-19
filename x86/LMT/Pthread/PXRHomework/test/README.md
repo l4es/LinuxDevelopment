@@ -119,9 +119,12 @@ Sending HALOO  ...
 -->: HALOO
 <--: 
 
-2.d. Test multiple connections in parallel
+2.d. Test multiple connections in parallel for rubustness test
 Console 1: $./run_server.sh
 ==========
+// TBD
 
 Console 2: $./run_client_parallel.sh
 ==========
+// TBD
+// Note : Currently a SIGPIPE detected by this test on socket send() method
