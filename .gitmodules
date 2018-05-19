@@ -238,3 +238,6 @@
 [submodule "Common/Examples/uwb_uwb2can"]
 	path = Common/Examples/uwb_uwb2can
 	url = https://github.com/yuq/uwb_uwb2can.git
+[submodule "LFS"]
+	path = LFS
+	url = https://github.com/FXRer/LinuxFromScratch.git
