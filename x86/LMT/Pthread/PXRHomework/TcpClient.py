@@ -1,8 +1,19 @@
+import signal
 import socket
 import sys, getopt
 
+# Handler for Ctrl-C
+def signal_handler(signal, frame):
+	tcp_client.close()
+	sys.exit(0)
+
+# Register Ctrl-C handler
+signal.signal(signal.SIGINT, signal_handler)
+
+# Read arguments
 myopts, args = getopt.getopt(sys.argv[1:],"p:a:m:w:")
 
+# Parse arguments
 for opt, arg in myopts:
     if opt == '-p':
         server_port=arg
@@ -13,7 +24,7 @@ for opt, arg in myopts:
     elif opt == '-w':
         wait=arg
     else:
-        print("Usage: %s -p port -a address -m message -w wait" % sys.argv[0])
+        print("Usage: %s -p port -a address -m message -w wait (yes/no)" % sys.argv[0])
 
 # Initialize a TCP client socket using SOCK_STREAM
 tcp_client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -32,4 +43,5 @@ try:
             break
 
 finally:
-    tcp_client.close()
+	tcp_client.close()
+
