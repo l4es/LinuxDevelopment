@@ -2,7 +2,7 @@
 
 PORT=9999
 ADDR='127.0.0.1'
-MESSAGE="HELLO"
+MESSAGE="HELLO!"
 
 echo "Running client in mode periodic ..."
 while true; do

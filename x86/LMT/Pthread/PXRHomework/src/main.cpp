@@ -11,7 +11,7 @@ int main(int argc, char** argv) {
     exit(1);
   }
 
-  cout << "Running!" << endl;
+  cout << "\nServer running!" << endl;
 
   Server *s = new Server(atoi(argv[1]), argv[2]);
 

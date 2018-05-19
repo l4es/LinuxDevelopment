@@ -100,7 +100,7 @@ void *Server::handleClient(void *args) {
       delete client;
 
       //Send goodbye to others
-      snprintf(message, sizeof message, "%s", "BYEBYE"); 
+      snprintf(message, sizeof message, "%s", "BYEBYE!"); 
       cout << " ==>:"<< message << endl;
       sendToAll(message);
 
@@ -116,10 +116,10 @@ void *Server::handleClient(void *args) {
       // First time connected?
       if (client->isConnected() != true) {
         client->setConnect();
-        // First message = "HELLO" ?
-        if (strcmp(buffer, "HELLO") == 0) {
-          snprintf(message, sizeof message, "%s", "HI"); 
-          cout << "-->: " << message << endl;
+        // First message = "HELLO!" ?
+        if (strcmp(buffer, "HELLO!") == 0) {
+          snprintf(message, sizeof message, "%s", "HI!"); 
+          cout << "-->:" << message << endl;
           sendToClient(client, message);
  
           // Continue listenning client on the openned socket

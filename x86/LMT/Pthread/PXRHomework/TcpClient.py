@@ -4,6 +4,7 @@ import sys, getopt
 
 # Handler for Ctrl-C
 def signal_handler(signal, frame):
+	wait='no'
 	tcp_client.close()
 	sys.exit(0)
 

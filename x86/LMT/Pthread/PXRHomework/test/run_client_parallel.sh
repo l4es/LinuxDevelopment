@@ -4,7 +4,7 @@ MAX_COUNT=250
 
 PORT=9999
 ADDR='127.0.0.1'
-MESSAGE="HELLO"
+MESSAGE="HELLO!"
 
 CMD="python ../TcpClient.py -p ${PORT} -a ${ADDR} -m ${MESSAGE} -w no"
 
