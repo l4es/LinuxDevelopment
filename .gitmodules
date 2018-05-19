@@ -241,3 +241,6 @@
 [submodule "LFS"]
 	path = LFS
 	url = https://github.com/FXRer/LinuxFromScratch.git
+[submodule "Common/Examples/lcd-drivers"]
+	path = Common/Examples/lcd-drivers
+	url = https://github.com/sirinsoftware/lcd-drivers.git
