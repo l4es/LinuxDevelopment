@@ -17,7 +17,7 @@ class CustomThread {
     int join();
     int detach();
 
-	// Some static guard functions, are not really part of this class
+    // Some static guard functions, are not really part of this class
     static int initMutex();
     static int lockMutex(const char *identifier);
     static int unlockMutex(const char *identifier);
