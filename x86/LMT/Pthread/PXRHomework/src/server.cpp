@@ -42,34 +42,46 @@ Server::~Server() {
 
 void Server::dispatchConnection() {
   
-  Client *client;
   CustomThread *cthread;
 
   socklen_t sockSize = sizeof(sockaddr_in);
 
   while(1) {
-    cout << "New connection ... " << endl;
-    client = new Client();
-    cthread = new CustomThread();
+    cout << "Waiting new connection ... " << endl;
 
     int sock = accept(m_ServerSock, (struct sockaddr *) &m_ClientAddr, &sockSize);
     if(sock < 0) {
       cerr << "Error on accept";
     }
     else {
-      // Update socket of client and assign a task to handle client via this socket
-      client->setSocket(sock); 
-      cthread->create((void *) Server::handleClient, client);
+      // Assign new task to handle client via this socket
+      cthread = new CustomThread();
+      if (cthread != nullptr) {
+        cthread->create((void *) Server::handleClient, &sock);
+        cthread->detach(); // Avoid memleak detected by Valgrind for pthread_create()
+        delete cthread;
+	  }
+	  else {
+		  cerr << "Error on create new CustomThread()" << endl;
+	  }
     }
-    delete cthread;
   }
 }
 
-//Static
+//Static handler for client socket
 void *Server::handleClient(void *args) {
-  Client *client = (Client *) args;
   char buffer[255], message[255];
   int n;
+
+  // Copy thread argument
+  int sock = *(int *) args;
+
+  Client *client = new Client(sock);
+  if (client == nullptr) {
+	  cerr << "Error on create new Client(sock)" << endl;
+	  //End thread
+      return nullptr;
+  }
 
   //Add client into list
   addClient(client);
@@ -85,7 +97,8 @@ void *Server::handleClient(void *args) {
       close(client->getSocket());
       
       //Remove client from list
-      removeClient(client); delete client;
+      removeClient(client); 
+      delete client;
 
       //Send goodbye to others
       snprintf(message, sizeof message, "%s", "BYEBYE"); 
@@ -102,14 +115,16 @@ void *Server::handleClient(void *args) {
       // Message received, process it
       cout << "<--:" << buffer << endl;
       // First time connected?
-      if (client->m_IsConnected != true) {
-        client->m_IsConnected = true;
+      if (client->isConnected() != true) {
+        client->connect();
         // First message = "HELLO" ?
         if (strcmp(buffer, "HELLO") == 0) {
           snprintf(message, sizeof message, "%s", "HI"); 
           cout << "-->: " << message << endl;
           int n = send(client->getSocket(), message, strlen(message), 0);
           cout << n << " bytes sent." << endl;
+ 
+          // Continue listenning client on the openned socket
           continue;
         }
       }
@@ -119,7 +134,8 @@ void *Server::handleClient(void *args) {
       close(client->getSocket());
       
       //Remove client from list
-      removeClient(client); delete client;
+      removeClient(client); 
+      delete client;
 
       // Stop communication with client
       return nullptr;

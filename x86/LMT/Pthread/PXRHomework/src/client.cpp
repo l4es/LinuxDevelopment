@@ -2,7 +2,11 @@
 
 using namespace std;
 
-Client::Client() : m_IsConnected(false)
+Client::Client() : m_Id(-1), m_Sock (-1), m_IsConnected(false)
+{
+}
+
+Client::Client(int sock) : m_Id(-1), m_Sock (sock), m_IsConnected(false)
 {
 }
 
@@ -24,4 +28,16 @@ void Client::setId(int id) {
 
 int Client::getId() {
   return m_Id;
+}
+
+bool Client::isConnected() {
+  return m_IsConnected;
+}
+
+void Client::connect() {
+	m_IsConnected = true;
+}
+
+void Client::disconnect() {
+	m_IsConnected = false;
 }

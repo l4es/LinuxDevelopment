@@ -21,6 +21,7 @@ class CustomThread {
     virtual ~CustomThread();
     int create(void *callback, void *args);
     int join();
+    int detach();
 
     static int initMutex();
     static int lockMutex(const char *identifier);

@@ -29,7 +29,6 @@ class Server {
     int m_ClientSock;
     struct sockaddr_in m_ServerAddr;
     struct sockaddr_in m_ClientAddr;
-//    char m_Buff[256];
 
   public:
     Server(int port, char * ip);

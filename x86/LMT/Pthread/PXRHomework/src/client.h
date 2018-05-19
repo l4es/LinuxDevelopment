@@ -11,19 +11,21 @@ using namespace std;
 
 class Client {
   private:
-    char *m_pName;
     int m_Id;
     int m_Sock;
+    bool m_IsConnected;
 
   public:
     Client();
+    Client(int sock);
     virtual ~Client();
     void setId(int id);
     int getId();    
     void setSocket(int socket);
     int getSocket();
- 
-    bool m_IsConnected;
+    bool isConnected();
+    void connect();
+    void disconnect(); 
 };
 
 #endif

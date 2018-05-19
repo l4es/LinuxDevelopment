@@ -31,6 +31,11 @@ int CustomThread::join() {
   return 0;
 }
 
+int CustomThread::detach() {
+  pthread_detach(m_ThreadId);
+  return 0;
+}
+
 int CustomThread::initMutex() {
   
   if(pthread_mutex_init(&CustomThread::m_Mutex, NULL) < 0) {
