@@ -5,8 +5,6 @@
 #include <cstdio>
 #include <cstdlib>
 
-#define MAX_NAME_LENGHT 20
-
 using namespace std;
 
 class Client {
