@@ -283,3 +283,9 @@
 [submodule "Common/Libraries/D-BUS/simppl"]
 	path = Common/Libraries/IPC/DBus/simppl
 	url = https://github.com/martinhaefner/simppl.git
+[submodule "Common/Libraries/IPC/MessageQueue/cppzmq"]
+	path = Common/Libraries/IPC/MessageQueue/cppzmq
+	url = https://github.com/zeromq/cppzmq.git
+[submodule "Common/Libraries/IPC/MessageQueue/zmqpp"]
+	path = Common/Libraries/IPC/MessageQueue/zmqpp
+	url = https://github.com/zeromq/zmqpp.git
