@@ -256,9 +256,6 @@
 [submodule "Common/Libraries/IPC/celery"]
 	path = Common/Libraries/IPC/celery
 	url = https://github.com/celery/celery.git
-[submodule "Common/Libraries/IPC/CppRemote"]
-	path = Common/Libraries/IPC/CppRemote
-	url = https://github.com/kwanti/CppRemote.git
 [submodule "Common/Libraries/IPC/echolib"]
 	path = Common/Libraries/IPC/echolib
 	url = https://github.com/vicoslab/echolib.git
@@ -304,3 +301,6 @@
 [submodule "Common/Libraries/IPC/Netlink/netlink-sockets"]
 	path = Common/Libraries/IPC/Netlink/netlink-sockets
 	url = https://github.com/riqpe/netlink-sockets.git
+[submodule "Common/Libraries/IPC/cpp-remote"]
+	path = Common/Libraries/IPC/cpp-remote
+	url = https://github.com/kwanti/CppRemote.git
