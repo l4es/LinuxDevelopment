@@ -256,3 +256,21 @@
 [submodule "Common/Libraries/IPC/celery"]
 	path = Common/Libraries/IPC/celery
 	url = https://github.com/celery/celery.git
+[submodule "Common/Libraries/IPC/CppRemote"]
+	path = Common/Libraries/IPC/CppRemote
+	url = https://github.com/kwanti/CppRemote.git
+[submodule "Common/Libraries/IPC/echolib"]
+	path = Common/Libraries/IPC/echolib
+	url = https://github.com/vicoslab/echolib.git
+[submodule "Common/Libraries/IPC/linux-ipc-wrappers"]
+	path = Common/Libraries/IPC/linux-ipc-wrappers
+	url = https://github.com/dinkelk/linux-ipc-wrappers.git
+[submodule "Common/Libraries/IPC/MQ"]
+	path = Common/Libraries/IPC/MQ
+	url = https://github.com/tiepologian/MQ.git
+[submodule "Common/Libraries/IPC/rabbitmq-cpp-tutorials"]
+	path = Common/Libraries/IPC/rabbitmq-cpp-tutorials
+	url = https://github.com/RPG-18/rabbitmq-cpp-tutorials.git
+[submodule "Common/Libraries/IPC/ach"]
+	path = Common/Libraries/IPC/ach
+	url = https://github.com/golems/ach.git
