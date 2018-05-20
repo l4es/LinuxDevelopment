@@ -298,3 +298,9 @@
 [submodule "Common/Examples/DBus"]
 	path = Common/Examples/DBus
 	url = https://github.com/dooteo/DBus.git
+[submodule "Common/Libraries/IPC/Netlink/netlink-msgpack"]
+	path = Common/Libraries/IPC/Netlink/netlink-msgpack
+	url = https://github.com/Lichtso/netLink.git
+[submodule "Common/Libraries/IPC/Netlink/netlink-sockets"]
+	path = Common/Libraries/IPC/Netlink/netlink-sockets
+	url = https://github.com/riqpe/netlink-sockets.git
