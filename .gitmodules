@@ -247,3 +247,12 @@
 [submodule "Common/Examples/ctp"]
 	path = Common/Examples/ctp
 	url = https://github.com/pavius/ctp.git
+[submodule "Common/Libraries/IPC/nanomsg"]
+	path = Common/Libraries/IPC/nanomsg
+	url = https://github.com/nanomsg/nanomsg.git
+[submodule "Common/Libraries/IPC/nng"]
+	path = Common/Libraries/IPC/nng
+	url = https://github.com/nanomsg/nng.git
+[submodule "Common/Libraries/IPC/celery"]
+	path = Common/Libraries/IPC/celery
+	url = https://github.com/celery/celery.git
