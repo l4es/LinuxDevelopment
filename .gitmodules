@@ -289,3 +289,12 @@
 [submodule "Common/Libraries/IPC/MessageQueue/zmqpp"]
 	path = Common/Libraries/IPC/MessageQueue/zmqpp
 	url = https://github.com/zeromq/zmqpp.git
+[submodule "Common/Examples/samples-dbus"]
+	path = Common/Examples/samples-dbus
+	url = https://github.com/fbuihuu/samples-dbus.git
+[submodule "Common/Examples/dbus-example"]
+	path = Common/Examples/dbus-example
+	url = https://github.com/linneman/dbus-example.git
+[submodule "Common/Examples/DBus"]
+	path = Common/Examples/DBus
+	url = https://github.com/dooteo/DBus.git
