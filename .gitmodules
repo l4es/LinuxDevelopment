@@ -266,20 +266,20 @@
 	path = Common/Libraries/IPC/linux-ipc-wrappers
 	url = https://github.com/dinkelk/linux-ipc-wrappers.git
 [submodule "Common/Libraries/IPC/MQ"]
-	path = Common/Libraries/IPC/MQ
+	path = Common/Libraries/IPC/MessageQueue/MQ
 	url = https://github.com/tiepologian/MQ.git
 [submodule "Common/Libraries/IPC/rabbitmq-cpp-tutorials"]
-	path = Common/Libraries/IPC/rabbitmq-cpp-tutorials
+	path = Common/Libraries/IPC/MessageQueue/rabbitmq-cpp-tutorials
 	url = https://github.com/RPG-18/rabbitmq-cpp-tutorials.git
 [submodule "Common/Libraries/IPC/ach"]
 	path = Common/Libraries/IPC/ach
 	url = https://github.com/golems/ach.git
 [submodule "Common/Libraries/D-BUS/sdbus-cpp"]
-	path = Common/Libraries/D-BUS/sdbus-cpp
+	path = Common/Libraries/IPC/DBus/sdbus-cpp
 	url = https://github.com/Kistler-Group/sdbus-cpp.git
 [submodule "Common/Libraries/D-BUS/dbus-broker"]
-	path = Common/Libraries/D-BUS/dbus-broker
+	path = Common/Libraries/IPC/DBus/dbus-broker
 	url = https://github.com/bus1/dbus-broker.git
 [submodule "Common/Libraries/D-BUS/simppl"]
-	path = Common/Libraries/D-BUS/simppl
+	path = Common/Libraries/IPC/DBus/simppl
 	url = https://github.com/martinhaefner/simppl.git
