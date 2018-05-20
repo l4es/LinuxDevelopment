@@ -274,3 +274,12 @@
 [submodule "Common/Libraries/IPC/ach"]
 	path = Common/Libraries/IPC/ach
 	url = https://github.com/golems/ach.git
+[submodule "Common/Libraries/D-BUS/sdbus-cpp"]
+	path = Common/Libraries/D-BUS/sdbus-cpp
+	url = https://github.com/Kistler-Group/sdbus-cpp.git
+[submodule "Common/Libraries/D-BUS/dbus-broker"]
+	path = Common/Libraries/D-BUS/dbus-broker
+	url = https://github.com/bus1/dbus-broker.git
+[submodule "Common/Libraries/D-BUS/simppl"]
+	path = Common/Libraries/D-BUS/simppl
+	url = https://github.com/martinhaefner/simppl.git
