@@ -304,3 +304,6 @@
 [submodule "Common/Libraries/IPC/cpp-remote"]
 	path = Common/Libraries/IPC/cpp-remote
 	url = https://github.com/kwanti/CppRemote.git
+[submodule "Common/Libraries/IPC/libipc"]
+	path = Common/Libraries/IPC/libipc
+	url = https://github.com/kralf/libipc.git
