@@ -1,0 +1,41 @@
+To install cMsg vsn 2:
+
+1) Download BMS.tar.gz from the BMS ftp directory (parallel to this one).
+
+2) Download cMsg-2.0.tar.gz and the User's Guide from this ftp directory.
+
+3) unzip and untar cMsg-2.0.tar.gz and BMS.tar.gz.
+
+4) Set the environment variable BMS_HOME to the directory containing
+the unzipped/untarred BMS distribution.  Compiling the C/C++ parts of
+cMsg require the makefiles in BMS.
+   
+5) Set the environment variable INSTALL_DIR to a directory in which to
+place cMsg libraries, header files, and executables.
+   
+6) For documentation look at:
+    BMS_users_guide-1.0.pdf  --  in ftp directory
+    cMsg/doc/users_guide
+    cMsg/doc/developers_guide
+    run "make doc" in the cMsg directory to generate doxygen and javadoc
+
+7) Type "make install" in the cMsg directory to make C/C++.
+
+8) Type "make java" in the cMsg directory to make java code (needs ant).
+
+9) Type "make help" in the cMsg directory to see other makefile
+options.  To see all the latest options read the makefile.
+
+
+
+
+To install cMsg vsn 3:
+
+With version 3 you can use scons instead of BMS and Make.  After unzip
+and untar, and after setting INSTALL_DIR, use "scons install" and
+"scons java".
+
+
+
+Contact Carl Timmer (timmer@jlab.org) and/or Elliott Wolin
+(wolin@jlab.org) if you have any problems or questions.
