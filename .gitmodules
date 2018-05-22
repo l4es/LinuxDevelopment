@@ -307,3 +307,6 @@
 [submodule "Common/Libraries/IPC/libipc"]
 	path = Common/Libraries/IPC/libipc
 	url = https://github.com/kralf/libipc.git
+[submodule "Common/Examples/libjaneth-power"]
+	path = Common/Examples/libjaneth-power
+	url = https://github.com/jmaye/libjaneth-power.git
