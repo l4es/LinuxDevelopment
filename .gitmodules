@@ -251,7 +251,7 @@
 	path = Common/Libraries/IPC/MessageQueue/nanomsg
 	url = https://github.com/nanomsg/nanomsg.git
 [submodule "Common/Libraries/IPC/nng"]
-	path = Common/Libraries/IPC/MessageQueue/nng
+	path = Common/Libraries/IPC/MessageQueue/nanomsg-nng
 	url = https://github.com/nanomsg/nng.git
 [submodule "Common/Libraries/IPC/celery"]
 	path = Common/Libraries/IPC/celery
