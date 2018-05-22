@@ -310,3 +310,21 @@
 [submodule "Common/Examples/libjaneth-power"]
 	path = Common/Examples/libjaneth-power
 	url = https://github.com/jmaye/libjaneth-power.git
+[submodule "Common/Libraries/IPC/MessageQueue/AMQP-CPP"]
+	path = Common/Libraries/IPC/MessageQueue/AMQP-CPP
+	url = https://github.com/CopernicaMarketingSoftware/AMQP-CPP.git
+[submodule "Common/Libraries/IPC/MessageQueue/libamqp-cpp"]
+	path = Common/Libraries/IPC/MessageQueue/libamqp-cpp
+	url = https://github.com/alanxz/libamqp-cpp.git
+[submodule "Common/Libraries/IPC/MessageQueue/rabbitcpp"]
+	path = Common/Libraries/IPC/MessageQueue/rabbitcpp
+	url = https://github.com/arnaudsj/rabbitcpp.git
+[submodule "Common/Libraries/IPC/MessageQueue/examples.amqp-cpp"]
+	path = Common/Libraries/IPC/MessageQueue/examples.amqp-cpp
+	url = https://github.com/hoxnox/examples.amqp-cpp.git
+[submodule "Common/Libraries/IPC/MessageQueue/SimpleAmqpClient"]
+	path = Common/Libraries/IPC/MessageQueue/SimpleAmqpClient
+	url = https://github.com/alanxz/SimpleAmqpClient.git
+[submodule "Common/Libraries/IPC/MessageQueue/rabbitmq-c"]
+	path = Common/Libraries/IPC/MessageQueue/rabbitmq-c
+	url = https://github.com/alanxz/rabbitmq-c.git
