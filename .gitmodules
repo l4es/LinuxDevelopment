@@ -331,3 +331,6 @@
 [submodule "Common/Libraries/IPC/DBus/samples-dbus"]
 	path = Common/Libraries/IPC/DBus/samples-dbus
 	url = https://github.com/fbuihuu/samples-dbus.git
+[submodule "Common/Libraries/IPC/dlib"]
+	path = Common/Libraries/IPC/dlib
+	url = https://github.com/davisking/dlib.git
