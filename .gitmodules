@@ -334,3 +334,6 @@
 [submodule "Common/Libraries/IPC/dlib"]
 	path = Common/Libraries/IPC/dlib
 	url = https://github.com/davisking/dlib.git
+[submodule "Common/Libraries/IPC/lcm"]
+	path = Common/Libraries/IPC/lcm
+	url = https://github.com/lcm-proj/lcm.git
