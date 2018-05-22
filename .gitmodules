@@ -328,3 +328,6 @@
 [submodule "Common/Libraries/IPC/MessageQueue/rabbitmq-c"]
 	path = Common/Libraries/IPC/MessageQueue/rabbitmq-c
 	url = https://github.com/alanxz/rabbitmq-c.git
+[submodule "Common/Libraries/IPC/DBus/samples-dbus"]
+	path = Common/Libraries/IPC/DBus/samples-dbus
+	url = https://github.com/fbuihuu/samples-dbus.git
