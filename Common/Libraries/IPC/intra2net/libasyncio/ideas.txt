@@ -1,0 +1,38 @@
+ideas/todo libasyncio
+------------------------
+
+smaller refactoring
+-----------
+remove dependencies to libi2ncommon
+documentation, usage examples, website
+backend in separate file
+break backend::doOneStep in 4 functions
+separate pollfd, maybe encapsulate the pollfd-struct instead of deriving from it
+separate polldatacluster
+document that timerbase is always based on  monotonic clock, getrealwhentime converts the time live
+document handling of error-cases, m_errno (e.g. mask ENOTSOCK for non-socket fds)
+provide simple replacements for system() and pipestream using simpleio and timeouts
+steal idea from pike-dvd-script: pipe-like program-chain
+
+bigger refactoring
+------------------
+put iolist, timerlist & child-handling into backend to reduce the usage of global objects
+make IOImplementations require a link to the backend they are used with
+
+ideas
+-----
+offer a common io-client or io-server, abstracting out the real communication channel used.
+makes it possible to switch between ways of communication at runtime
+maybe filter-interface offers this functionality?
+
+boost::asio
+-----------
+feature comparison to boost::asio
+interface/usage comparison, what is more easy to use for our usecase?
+long-term: merge with boost::asio, maybe with additional lib or keep it a separate project?
+
+glue_t2n
+--------
+don't call doOneStep from within the fill_buffer()-variants
+- for the server-variants not that hard if you require that command_server::handle will be called on every socket-event
+- for the client: needs callback-interface on t2n-side, need to think about it

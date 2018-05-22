@@ -1,0 +1,161 @@
+# @HAVE_LIBI2NCOMMON_TRUE@%define with_libi2ncommon 1
+# @HAVE_LIBI2NCOMMON_FALSE@%define with_libi2ncommon 0
+# @HAVE_LIBT2N_TRUE@%define with_libt2n 1
+# @HAVE_LIBT2N_FALSE@%define with_libt2n 0
+%define with_libi2ncommon 1
+%define with_libt2n 1
+
+Summary:   library with asynchronous io functionality
+Name:      libasyncio
+Version:   @VERSION@
+Release:   1
+License:   GPL version 2 + linking exception
+Group:     Intra2net
+Vendor:    Intra2net AG
+Source:    %{name}-%{version}.tar.gz
+# Buildroot: /tmp/%{name}-%{version}-root
+Prefix:    /usr
+Requires:  libi2ncommon >= 1.0
+Requires:   boost >= 1.32.0
+Requires:  libasyncio-utils = %{version}
+# BuildRequires: libtool
+BuildRequires: boost-devel >= 1.32.0
+Obsoletes: libsimpleio
+
+%description 
+library with asynchronous io functionality
+
+
+%package   devel
+Summary:   library with asynchronous io functionality
+Group:     Intra2net/Development
+Requires:  libi2ncommon-devel
+Requires:  boost-devel >= 1.32.0
+Obsoletes: libsimpleio-devel
+
+
+%description devel
+development files for library with asynchronous io functionality
+
+
+%package utils
+Summary:   library with asynchronous io functionality
+Group:     Intra2net
+%if %{with libi2ncommon}
+Requires:  libi2ncommon >= 1.0
+%endif
+Requires: boost >= 1.32.0
+
+%description utils
+A collection of util function and classes used within asyncio, but
+are also usable for other purposes, too.
+
+
+%package utils-devel
+Summary:   library with asynchronous io functionality
+Group:     Intra2net/Development
+Requires:  boost-devel >= 1.32.0
+
+%description utils-devel
+development files for asyncio utils.
+
+
+%if %{with libt2n}
+%package t2n
+Summary:    glue library for using t2n with libasyncio
+Group:      Intra2net
+BuildRequires: libt2n-devel >= 0.4
+Requires:   libt2n >= 0.4
+Obsoletes:  libsimpleio-t2n
+
+%description t2n
+glue lib for using t2n with simpleio.
+
+
+%package t2n-devel
+Summary:    glue library for using t2n with libasyncio
+Group:      Intra2net/Development
+Requires:   libt2n-devel >= 0.4
+
+%description t2n-devel
+development files for glue lib for using t2n with simpleio.
+%endif
+
+
+
+%prep
+%setup -q
+
+%build
+export PKG_CONFIG_PATH=/usr/lib/pkgconfig:/usr/intranator/lib/pkgconfig
+# autoreconf --force -i
+# ./configure $RPM_BUILD_WITH_OPTIMIZE --prefix=%{prefix}
+
+mkdir build
+cd build
+
+export CFLAGS="$RPM_OPT_FLAGS"
+export CXXFLAGS="$RPM_OPT_FLAGS"
+
+CMAKE_OPTS=""
+%if %{with libi2ncommon}
+    CMAKE_OPTS="$CMAKE_OPTS -DWITH_LIBI2NCOMMON=ON"
+%endif
+%if %{with libt2n}
+    CMAKE_OPTS="$CMAKE_OPTS -DWITH_LIBT2N=ON"
+%endif
+
+cmake -DCMAKE_INSTALL_PREFIX="%{prefix}" $CMAKE_OPTS ../
+
+dmake %{?_smp_mflags}
+
+export BOOST_TEST_LOG_LEVEL=test_suite
+dmake check
+
+%install
+cd build
+make DESTDIR=$RPM_BUILD_ROOT install
+
+# Remove unpackaged files
+rm -f $RPM_BUILD_ROOT/usr/lib/libasyncio_utils.a
+rm -f $RPM_BUILD_ROOT/usr/lib/libasyncio_utils.la
+
+%clean
+rm -fr $RPM_BUILD_ROOT
+
+%post
+/sbin/ldconfig
+
+%files
+%defattr(-,root,root)
+%doc LICENSE COPYING.GPL
+%{prefix}/lib/libasyncio.so*
+
+%files devel -f build/headerlist.asyncio
+%defattr(-,root,root)
+%{prefix}/lib/libasyncio.*a*
+%{prefix}/lib/pkgconfig/libasyncio.pc
+
+
+%files utils
+%defattr(-,root,root)
+%{prefix}/lib/libasyncio_utils.so*
+
+
+%files utils-devel -f build/headerlist.utils
+%defattr(-,root,root)
+%{prefix}/lib/libasyncio.*a*
+%{prefix}/lib/pkgconfig/libasyncio_utils.pc
+
+%if %{with libt2n}
+%files t2n
+%defattr(-,root,root)
+%doc LICENSE
+%{prefix}/lib/libasyncio_t2n.so*
+
+%files t2n-devel
+%defattr(-,root,root)
+%{prefix}/lib/libasyncio_t2n.*a*
+%{prefix}/lib/pkgconfig/libasyncio_t2n.pc
+%{prefix}/include/asyncio_t2n*.hpp
+%endif

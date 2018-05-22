@@ -1,0 +1,10 @@
+AC_INIT(configure.in)
+AM_INIT_AUTOMAKE(libt2n-example1-client-wrapper, 0.1)
+AC_LANG_CPLUSPLUS
+AC_PROG_CXX
+AM_PROG_LIBTOOL
+
+dnl check for the client library
+PKG_CHECK_MODULES(T2NEXAMPLE, t2nexample = 0.1)
+
+AC_OUTPUT(Makefile)

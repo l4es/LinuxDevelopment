@@ -1,0 +1,5 @@
+Example using libt2n without the code generator directly.
+This is probably not the example you are looking for.
+The examples using the code generator are in ../examples-codegen
+
+This example was used to write the code generator.

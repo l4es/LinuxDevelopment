@@ -1,0 +1,11 @@
+- add option similar to gccs -MD (at the moment it is a fixed set of files generated and
+  they are handled in the makefile snippet [codegen.make])
+- it would really be much nicer if the client lib includes would not depend upon boost serialization
+  i thought a solution would be to provide this optionally by wrapping the corresponding includes in a #ifdef
+  but this does not work since command.hxx is included which depends on boost serialization headers anyway
+  => we do not provide this for now
+- naming scheme?!
+  perhaps generated group class should not be prefixed by cmd_group_
+- would be nice to reduce amount of changed files
+  (codegen output is often the same as the existing files - something similar to ccache
+  for codegen - but not overwriting output files if they are the same)

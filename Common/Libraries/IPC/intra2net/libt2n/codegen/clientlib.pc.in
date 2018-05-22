@@ -1,0 +1,11 @@
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+includedir=@includedir@
+
+Name: @CMDGROUP@
+Description: command group @CMDGROUP@ client library
+Version: @VERSION@
+Requires: libt2n
+Libs: -L${libdir} -l@CMDGROUP@
+Cflags: -I${includedir}

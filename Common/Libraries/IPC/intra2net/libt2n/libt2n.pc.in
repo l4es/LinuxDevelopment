@@ -1,0 +1,13 @@
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+bindir=@bindir@
+libdir=@libdir@
+includedir=@includedir@/libt2n
+libt2n_codegen=@bindir@/libt2n-codegen
+libt2n_datadir=@datadir@/libt2n
+
+Name: libt2n
+Description: talk2neighbor - C++ IPC library
+Version: @VERSION@
+Libs: -L${libdir} -lt2n @BOOST_LDFLAGS@ @BOOST_SERIALIZATION_LIB@
+Cflags: -I${includedir} @BOOST_CPPFLAGS@

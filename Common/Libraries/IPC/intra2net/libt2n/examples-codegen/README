@@ -1,0 +1,10 @@
+Examples using the code generator.
+
+example1* are  simple  examples also  used for the  doxygen  generated
+documentation.
+
+example2* are more complex examples used for automatic testing.
+
+Those  examples  have  to be  build   separately. Take  a  look at the
+test-build-install-use script in  the top level directory to  automate
+this task.

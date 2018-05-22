@@ -1,0 +1,12 @@
+// PC-Lint 9.00 settings
+
+// Include paths
+-i../
+-i../utils
+
+
+// Don't complain about redeclaration of classname::PtrType
+-esym(1516, I2n::SharedBase::PtrType)
+
+// Allow enum to int conversions
++fie

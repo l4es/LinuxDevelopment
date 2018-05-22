@@ -1,0 +1,11 @@
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+includedir=@includedir@
+
+Name: libasyncio_utils
+Description: utils for the asynchrounous io lib
+Version: @VERSION@
+@HAVE_LIBI2NCOMMON_TRUE@Requires: libi2ncommon
+Libs: -L${libdir} -lasyncio_utils
+Cflags: -I${includedir}

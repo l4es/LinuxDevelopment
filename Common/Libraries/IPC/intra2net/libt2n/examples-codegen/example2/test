@@ -1,0 +1,17 @@
+#!/bin/bash
+
+set -o nounset
+set -o errexit
+
+# todo handle separate build dir
+./libt2n-example2-server &
+SPID="$!"
+# ugly
+sleep 1
+if ./client; then
+	RET="0"
+else
+	RET="1"
+fi
+kill "$SPID"
+exit "$RET"

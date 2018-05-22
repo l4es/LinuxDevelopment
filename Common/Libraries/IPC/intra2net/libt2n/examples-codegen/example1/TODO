@@ -1,0 +1,25 @@
+- test using valgrind
+- lib name should be group name + suffix/prefix ?!
+  user should have complete control => no default suffix/perfix
+  headers should be installed in pkgincludedir? maybe yes on the other hand
+  the user can pass the directory to configure via --includedir
+- missing nodist_ problem:
+  we use an old automake version which doesn't support the nodist_ prefix
+  => make clean and make dist depend on generated sources
+  (i did not find a better solution)
+
+  (make clean now works twice because the example is now in its own package
+   and make clean is then able to create the files - just to remove them again ;-)
+
+- make distcheck from clean source not working? now it works (really strange)
+  it still sometimes does not work - after a make distclean? yes
+  this does not work:
+  dmake distclean && ./configure --prefix=/tmp/jens-delme/usr && dmake distcheck
+  nor:
+  dmake distclean && ./configure --prefix=/tmp/jens-delme/usr && dmake clean && dmake distcheck
+  but this works:
+  dmake distclean && ./configure --prefix=/tmp/jens-delme/usr && dmake && dmake clean && dmake distcheck
+
+  the difference is in Makefile.in:
+  the version that works has dependencies added the other version doesn't have
+  (=> automake adds them?)

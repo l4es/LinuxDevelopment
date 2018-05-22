@@ -1,0 +1,38 @@
+libasyncio
+===========
+
+A library providing for dealing with asynchronous IO.
+
+The basic idea for this lib is to provide classes which hide the details
+of polling/selecting for events on file descriptors and provide a more
+convenient interface which supports the idea of event driven programming.
+
+
+The library was originally developed by Intra2net AG as part of the
+Intranator connection daemon which is part of the Intranator (see http://www.intra2net.com/).
+During development it was extracted as a separate module.
+We then decided to publish it under The GNU Public License (GPL) + linking exception.
+See the "LICENSE" file for more details.
+
+
+
+libasyncio provides:
+
+- basic class for handling reading from and writing to fd's
+- filter plugin support for incoming/outgoing data.
+- timer events
+- deferred function calls; "frozen" function calls
+- start and handle subprocesses (connecting to their stdin/stdout/stderr)
+- unix domain socket handling
+- event signals (using boost-signal lib)
+- ... and some more stuff.
+
+
+It depends on the boost library (see http://www.boost.org/).
+
+
+Links:
+======
+
+The Boost library:  http://www.boost.org/
+Intra2net:  http://www.intra2net.com/

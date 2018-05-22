@@ -1,0 +1,23 @@
+code generator using gccxml and libxml++
+
+for example usage take a look at the libt2n-example package
+
+design decisions:
+
+installation of codegen-stubhead.hxx:
+codegen-stubhead.hxx is installed because the generated includes depend on the libt2n headers anyway
+
+make file snippet moved into libt2n-example1 and must be copied manually:
+automake is run first (before configure) and needs the makefile snippet => no way to let configure
+find the makefile snippet
+
+examples in separate packages:
+- this was done to be able to test that installation and configure scripts work as intended
+- there are two examples because one is used to generate the usage example documentation using doxygen
+  and one is used for automatic testing
+- in libt2n-examples there is a script test-built-install-use to test everything is fine
+
+group header file for include file dependencies:
+- simple
+- i don't see a solution using gccxml
+- better than extracting all the includes from the file and adding them to the generated code

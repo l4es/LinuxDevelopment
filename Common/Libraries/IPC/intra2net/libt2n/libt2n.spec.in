@@ -1,0 +1,74 @@
+Summary:   talk2neighbor - C++ IPC library
+Name:      libt2n
+Version:   @VERSION@
+Release:   1
+License:   GPL version 2 + linking exception
+Group:     Intra2net
+Vendor:    Intra2net AG
+Source:    http://www.intra2net.com/en/developer/libt2n/download/%{name}-%{version}.tar.bz2
+Buildroot: /tmp/%{name}-%{version}-root
+Prefix:    /usr
+BuildPrereq: libtool
+URL:       http://www.intra2net.com/en/developer/libt2n
+
+%description 
+C++ IPC library
+
+%package   devel
+Summary:   talk2neighbor - C++ IPC library
+Group:     Intra2net/Development
+Requires:  libt2n = %{version} gccxml libxml++ boost-devel
+BuildPrereq: boost-devel
+
+%description devel
+C++ IPC library devel files
+
+%prep
+%setup -q
+
+%build
+# autoreconf --force --install
+# ./configure $RPM_BUILD_WITH_OPTIMIZE --prefix=%{prefix}
+# %__make %{?_smp_mflags}
+
+export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig/
+
+mkdir build
+cd build
+
+export CFLAGS="$RPM_OPT_FLAGS"
+export CXXFLAGS="$RPM_OPT_FLAGS"
+
+cmake -DCMAKE_INSTALL_PREFIX="%{prefix}" ../
+
+dmake %{?_smp_mflags}
+
+export BOOST_TEST_LOG_LEVEL=test_suite
+dmake check || /bin/true
+
+%install
+cd build
+make DESTDIR=$RPM_BUILD_ROOT install
+
+%clean
+rm -fr $RPM_BUILD_ROOT
+
+%post
+/sbin/ldconfig
+
+%files
+%defattr(-,root,root)
+%doc AUTHORS README LICENSE COPYING.GPL
+%{prefix}/lib/libt2n.so*
+
+%files devel
+%doc ChangeLog doc examples examples-codegen 
+%defattr(-,root,root)
+%{prefix}/bin/libt2n-codegen
+%{prefix}/bin/libt2n-gccxml.sh
+%{prefix}/lib/*.*a*
+%{prefix}/lib/pkgconfig/*.pc
+%{prefix}/include/
+# %{prefix}/share/aclocal
+%{prefix}/share/libt2n
+%{prefix}/share/cmake/Modules/Libt2n.cmake
