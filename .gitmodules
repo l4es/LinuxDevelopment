@@ -337,3 +337,6 @@
 [submodule "Common/Libraries/IPC/lcm"]
 	path = Common/Libraries/IPC/lcm
 	url = https://github.com/lcm-proj/lcm.git
+[submodule "Common/Libraries/IPC/Netlink/libnl"]
+	path = Common/Libraries/IPC/Netlink/libnl
+	url = https://github.com/thom311/libnl.git
