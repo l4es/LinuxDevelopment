@@ -355,3 +355,6 @@
 [submodule "Common/Books/The-Linux-Programming-Interface/tlpi-dist"]
 	path = Common/Books/The-Linux-Programming-Interface/tlpi-dist
 	url = https://github.com/bradfa/tlpi-dist.git
+[submodule "Common/Libraries/IPC/ACE_TAO"]
+	path = Common/Libraries/IPC/ACE_TAO
+	url = https://github.com/DOCGroup/ACE_TAO.git
