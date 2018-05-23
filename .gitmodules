@@ -343,3 +343,15 @@
 [submodule "Common/Libraries/IPC/Netlink/netlink-demo"]
 	path = Common/Libraries/IPC/Netlink/netlink-demo
 	url = https://github.com/houjian/netlink-demo.git
+[submodule "Common/Books/The-Linux-Programming-Interface/linux-programming-interface-exercises"]
+	path = Common/Books/The-Linux-Programming-Interface/linux-programming-interface-exercises
+	url = https://github.com/posborne/linux-programming-interface-exercises.git
+[submodule "Common/Books/The-Linux-Programming-Interface/the-linux-programming-interface"]
+	path = Common/Books/The-Linux-Programming-Interface/the-linux-programming-interface
+	url = https://github.com/mathewmarcus/the-linux-programming-interface.git
+[submodule "Common/Books/The-Linux-Programming-Interface/tlpi-exercises"]
+	path = Common/Books/The-Linux-Programming-Interface/tlpi-exercises
+	url = https://github.com/timjb/tlpi-exercises.git
+[submodule "Common/Books/The-Linux-Programming-Interface/tlpi-dist"]
+	path = Common/Books/The-Linux-Programming-Interface/tlpi-dist
+	url = https://github.com/bradfa/tlpi-dist.git
