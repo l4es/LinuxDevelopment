@@ -340,3 +340,6 @@
 [submodule "Common/Libraries/IPC/Netlink/libnl"]
 	path = Common/Libraries/IPC/Netlink/libnl
 	url = https://github.com/thom311/libnl.git
+[submodule "Common/Libraries/IPC/Netlink/netlink-demo"]
+	path = Common/Libraries/IPC/Netlink/netlink-demo
+	url = https://github.com/houjian/netlink-demo.git
