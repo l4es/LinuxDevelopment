@@ -373,3 +373,9 @@
 [submodule "Common/Libraries/IPC/libproxc"]
 	path = Common/Libraries/IPC/libproxc
 	url = https://github.com/edvardsp/libproxc.git
+[submodule "Common/Libraries/IPC/lthread"]
+	path = Common/Libraries/IPC/lthread
+	url = https://github.com/halayli/lthread.git
+[submodule "Common/Libraries/IPC/lthread_cpp"]
+	path = Common/Libraries/IPC/lthread_cpp
+	url = https://github.com/halayli/lthread_cpp.git
