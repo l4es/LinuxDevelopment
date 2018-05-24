@@ -358,3 +358,6 @@
 [submodule "Common/Libraries/IPC/ACE_TAO"]
 	path = Common/Libraries/IPC/ACE_TAO
 	url = https://github.com/DOCGroup/ACE_TAO.git
+[submodule "Common/Libraries/POSIX/libraries"]
+	path = Common/Libraries/POSIX/libraries
+	url = https://github.com/gozfree/libraries.git
