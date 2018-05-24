@@ -370,3 +370,6 @@
 [submodule "Common/IPC-demo"]
 	path = Common/IPC-demo
 	url = https://github.com/shake0/IPC-demo.git
+[submodule "Common/Libraries/IPC/libproxc"]
+	path = Common/Libraries/IPC/libproxc
+	url = https://github.com/edvardsp/libproxc.git
