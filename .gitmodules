@@ -365,10 +365,10 @@
 	path = Common/Libraries/IPC/ipc
 	url = https://github.com/nmittu/ipc.git
 [submodule "Common/server-client-ipc"]
-	path = Common/server-client-ipc
+	path = Common/Examples/server-client-ipc
 	url = https://github.com/ryanseys/server-client-ipc.git
 [submodule "Common/IPC-demo"]
-	path = Common/IPC-demo
+	path = Common/Examples/IPC-demo
 	url = https://github.com/shake0/IPC-demo.git
 [submodule "Common/Libraries/IPC/libproxc"]
 	path = Common/Libraries/IPC/libproxc
