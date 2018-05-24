@@ -361,3 +361,12 @@
 [submodule "Common/Libraries/POSIX/libraries"]
 	path = Common/Libraries/POSIX/libraries
 	url = https://github.com/gozfree/libraries.git
+[submodule "Common/Libraries/IPC/ipc"]
+	path = Common/Libraries/IPC/ipc
+	url = https://github.com/nmittu/ipc.git
+[submodule "Common/server-client-ipc"]
+	path = Common/server-client-ipc
+	url = https://github.com/ryanseys/server-client-ipc.git
+[submodule "Common/IPC-demo"]
+	path = Common/IPC-demo
+	url = https://github.com/shake0/IPC-demo.git
