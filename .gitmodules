@@ -379,3 +379,6 @@
 [submodule "Common/Libraries/IPC/lthread_cpp"]
 	path = Common/Libraries/IPC/lthread_cpp
 	url = https://github.com/halayli/lthread_cpp.git
+[submodule "AMC-Pico-8/LDD/amc-pico8-driver"]
+	path = AMC-Pico-8/LDD/amc-pico8-driver
+	url = https://github.com/CAENels/amc-pico8-driver.git
