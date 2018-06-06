@@ -418,3 +418,9 @@
 [submodule "Common/Testing/sanitizers"]
 	path = Common/Testing/sanitizers
 	url = https://github.com/google/sanitizers.git
+[submodule "Common/Examples/qemu-pcimydev-driver"]
+	path = Common/Examples/qemu-pcimydev-driver
+	url = https://github.com/j-marjanovic/qemu-pcimydev-driver.git
+[submodule "Common/Examples/gpcieuni-basedriver"]
+	path = Common/Examples/gpcieuni-basedriver
+	url = https://github.com/ChimeraTK/gpcieuni-basedriver.git
