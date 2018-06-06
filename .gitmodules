@@ -382,3 +382,39 @@
 [submodule "AMC-Pico-8/LDD/amc-pico8-driver"]
 	path = AMC-Pico-8/LDD/amc-pico8-driver
 	url = https://github.com/CAENels/amc-pico8-driver.git
+[submodule "Common/Libraries/xMP/open-amp"]
+	path = Common/Libraries/xMP/open-amp
+	url = https://github.com/OpenAMP/open-amp.git
+[submodule "Common/Libraries/xMP/charm"]
+	path = Common/Libraries/xMP/charm
+	url = https://github.com/UIUC-PPL/charm.git
+[submodule "Common/Libraries/xMP/jailhouse"]
+	path = Common/Libraries/xMP/jailhouse
+	url = https://github.com/siemens/jailhouse.git
+[submodule "Common/Libraries/xMP/mtcp"]
+	path = Common/Libraries/xMP/mtcp
+	url = https://github.com/eunyoung14/mtcp.git
+[submodule "Common/Libraries/xMP/MicroZedAMP"]
+	path = Common/Libraries/xMP/MicroZedAMP
+	url = https://github.com/berwinter/MicroZedAMP.git
+[submodule "Common/Libraries/xMP/freertos-pandaboard-amp"]
+	path = Common/Libraries/xMP/freertos-pandaboard-amp
+	url = https://github.com/sbourdelin/freertos-pandaboard-amp.git
+[submodule "Common/Libraries/xMP/rpmsg-lite"]
+	path = Common/Libraries/xMP/rpmsg-lite
+	url = https://github.com/codeauroraforum/rpmsg-lite.git
+[submodule "Common/Libraries/xMP/PFQ"]
+	path = Common/Libraries/xMP/PFQ
+	url = https://github.com/pfq/PFQ.git
+[submodule "Common/Libraries/xMP/phoenix"]
+	path = Common/Libraries/xMP/phoenix
+	url = https://github.com/kozyraki/phoenix.git
+[submodule "Common/Libraries/xMP/embb"]
+	path = Common/Libraries/xMP/embb
+	url = https://github.com/siemens/embb.git
+[submodule "Common/Libraries/xMP/erpc-imx-demos"]
+	path = Common/Libraries/xMP/erpc-imx-demos
+	url = https://github.com/EmbeddedRPC/erpc-imx-demos.git
+[submodule "Common/Libraries/xMP/erpc"]
+	path = Common/Libraries/xMP/erpc
+	url = https://github.com/EmbeddedRPC/erpc.git
