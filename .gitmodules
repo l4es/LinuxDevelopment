@@ -424,3 +424,9 @@
 [submodule "Common/Libraries/POSIX/pthreads-examples-c"]
 	path = Common/Libraries/POSIX/pthreads-examples-c
 	url = https://github.com/zappala/pthreads-examples-c.git
+[submodule "Common/Testing/ltp"]
+	path = Common/Testing/ltp
+	url = https://github.com/linux-test-project/ltp.git
+[submodule "Common/Testing/sanitizers"]
+	path = Common/Testing/sanitizers
+	url = https://github.com/google/sanitizers.git
