@@ -418,3 +418,9 @@
 [submodule "Common/Libraries/xMP/erpc"]
 	path = Common/Libraries/xMP/erpc
 	url = https://github.com/EmbeddedRPC/erpc.git
+[submodule "Common/Libraries/POSIX/linux-onposix"]
+	path = Common/Libraries/POSIX/linux-onposix
+	url = https://github.com/evidence/linux-onposix.git
+[submodule "Common/Libraries/POSIX/pthreads-examples-c"]
+	path = Common/Libraries/POSIX/pthreads-examples-c
+	url = https://github.com/zappala/pthreads-examples-c.git
