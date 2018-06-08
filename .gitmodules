@@ -427,3 +427,12 @@
 [submodule "Common/Libraries/IPC/AMP/freertos-multicore"]
 	path = Common/Libraries/IPC/AMP/freertos-multicore
 	url = https://github.com/n-aizu/freertos-multicore.git
+[submodule "Common/Libraries/IPC/PRU/BeagleScope"]
+	path = Common/Libraries/IPC/PRU/BeagleScope
+	url = https://github.com/ZeekHuge/BeagleScope.git
+[submodule "Common/Libraries/IPC/PRU/pru-software-support-package"]
+	path = Common/Libraries/IPC/PRU/pru-software-support-package
+	url = https://github.com/jadonk/pru-software-support-package.git
+[submodule "Common/Libraries/IPC/PRU/pruadc1"]
+	path = Common/Libraries/IPC/PRU/pruadc1
+	url = https://github.com/Greg-R/pruadc1.git
