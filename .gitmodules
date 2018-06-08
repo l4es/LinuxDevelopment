@@ -442,3 +442,9 @@
 [submodule "BBxM/BeagleBoard-exercises-solutions"]
 	path = BBxM/BeagleBoard-exercises-solutions
 	url = https://github.com/MarkAYoder/BeagleBoard-exercises-solutions.git
+[submodule "Common/Libraries/IPC/PRU/ws28xx-lighting-pru"]
+	path = Common/Libraries/IPC/PRU/ws28xx-lighting-pru
+	url = https://github.com/konsulko/ws28xx-lighting-pru.git
+[submodule "Common/Libraries/IPC/PRU/PRU-framework"]
+	path = Common/Libraries/IPC/PRU/PRU-framework
+	url = https://github.com/shubhi1407/PRU-framework.git
