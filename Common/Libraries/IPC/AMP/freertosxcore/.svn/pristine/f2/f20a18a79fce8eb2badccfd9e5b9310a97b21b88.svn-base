@@ -1,0 +1,1 @@
+See section 5.3 "Reproducing the Results" in the file "core_ignition/thesis.pdf" for instructions on creating an appropriate dual-core hardware design from scratch.

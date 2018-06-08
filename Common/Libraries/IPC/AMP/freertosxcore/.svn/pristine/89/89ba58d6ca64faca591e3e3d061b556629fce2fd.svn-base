@@ -1,0 +1,9 @@
+elfcheck
+Xilinx EDK 13.1 Build EDK_O.40d
+Copyright (c) 1995-2010 Xilinx, Inc.  All rights reserved.
+
+Command Line: elfcheck -hw ../../virtex_microblaze_dual_core/system.xml -pe
+microblaze_1 core_ignition.elf 
+
+ELF file	: core_ignition.elf
+elfcheck passed.

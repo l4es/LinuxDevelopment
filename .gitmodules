@@ -424,3 +424,6 @@
 [submodule "Common/Examples/gpcieuni-basedriver"]
 	path = Common/Examples/gpcieuni-basedriver
 	url = https://github.com/ChimeraTK/gpcieuni-basedriver.git
+[submodule "Common/Libraries/IPC/AMP/freertos-multicore"]
+	path = Common/Libraries/IPC/AMP/freertos-multicore
+	url = https://github.com/n-aizu/freertos-multicore.git
