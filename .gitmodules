@@ -448,3 +448,9 @@
 [submodule "Common/Libraries/IPC/PRU/PRU-framework"]
 	path = Common/Libraries/IPC/PRU/PRU-framework
 	url = https://github.com/shubhi1407/PRU-framework.git
+[submodule "Common/Libraries/IPC/AMP/Pandaboard-FreeRTOS"]
+	path = Common/Libraries/IPC/AMP/Pandaboard-FreeRTOS
+	url = https://github.com/apopple/Pandaboard-FreeRTOS.git
+[submodule "Common/Libraries/IPC/AMP/buildroot-pandaboard-amp"]
+	path = Common/Libraries/IPC/AMP/buildroot-pandaboard-amp
+	url = https://github.com/sbourdelin/buildroot-pandaboard-amp.git
