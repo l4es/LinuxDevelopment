@@ -457,3 +457,9 @@
 [submodule "Common/Libraries/IPC/AMP/FreeRTOS_WaRP7"]
 	path = Common/Libraries/IPC/AMP/FreeRTOS_WaRP7
 	url = https://github.com/WaRP7/FreeRTOS_WaRP7.git
+[submodule "Common/Books/Understanding-Unix-Linux-Programming"]
+	path = Common/Books/Understanding-Unix-Linux-Programming
+	url = https://github.com/zhuangqh/understanding-unix-linux-programming.git
+[submodule "Common/Books/Linux-In-Practice"]
+	path = Common/Books/Linux-In-Practice
+	url = https://github.com/satoru-takeuchi/linux-in-practice.git
