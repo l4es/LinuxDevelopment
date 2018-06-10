@@ -469,3 +469,6 @@
 [submodule "Common/Libraries/IPC/OMP/OpenMP_MCA_Project"]
 	path = Common/Libraries/IPC/OMP/OpenMP_MCA_Project
 	url = https://github.com/MCAPro2015/OpenMP_MCA_Project.git
+[submodule "Common/Examples/mcc-kmod"]
+	path = Common/Examples/mcc-kmod
+	url = https://github.com/toradex/mcc-kmod.git
