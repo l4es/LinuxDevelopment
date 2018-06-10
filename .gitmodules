@@ -472,3 +472,15 @@
 [submodule "Common/Examples/mcc-kmod"]
 	path = Common/Examples/mcc-kmod
 	url = https://github.com/toradex/mcc-kmod.git
+[submodule "Common/Libraries/MCC/PMQ-MCAPI"]
+	path = Common/Libraries/MCC/PMQ-MCAPI
+	url = https://github.com/BlackFairy/PMQ-MCAPI.git
+[submodule "Common/Libraries/MCC/puremvc-cpp-multicore-framework"]
+	path = Common/Libraries/MCC/puremvc-cpp-multicore-framework
+	url = https://github.com/PureMVC/puremvc-cpp-multicore-framework.git
+[submodule "Common/Libraries/MCC/ocaml-multicore"]
+	path = Common/Libraries/MCC/ocaml-multicore
+	url = https://github.com/ocamllabs/ocaml-multicore.git
+[submodule "Common/Libraries/MCC/cpp11-on-multicore"]
+	path = Common/Libraries/MCC/cpp11-on-multicore
+	url = https://github.com/preshing/cpp11-on-multicore.git
