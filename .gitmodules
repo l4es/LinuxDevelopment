@@ -463,3 +463,9 @@
 [submodule "Common/Books/Linux-In-Practice"]
 	path = Common/Books/Linux-In-Practice
 	url = https://github.com/satoru-takeuchi/linux-in-practice.git
+[submodule "Common/Libraries/IPC/OMP/openmp"]
+	path = Common/Libraries/IPC/OMP/openmp
+	url = https://github.com/llvm-mirror/openmp.git
+[submodule "Common/Libraries/IPC/OMP/OpenMP_MCA_Project"]
+	path = Common/Libraries/IPC/OMP/OpenMP_MCA_Project
+	url = https://github.com/MCAPro2015/OpenMP_MCA_Project.git
