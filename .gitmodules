@@ -484,3 +484,6 @@
 [submodule "Common/Libraries/MCC/cpp11-on-multicore"]
 	path = Common/Libraries/MCC/cpp11-on-multicore
 	url = https://github.com/preshing/cpp11-on-multicore.git
+[submodule "Common/Framework/Xenomai-GPIO-test"]
+	path = Common/Framework/Xenomai-GPIO-test
+	url = https://github.com/jacky6016/Xenomai-GPIO-test.git
