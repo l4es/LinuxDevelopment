@@ -487,3 +487,9 @@
 [submodule "Common/Framework/Xenomai-GPIO-test"]
 	path = Common/Framework/Xenomai-GPIO-test
 	url = https://github.com/jacky6016/Xenomai-GPIO-test.git
+[submodule "RPi/LPD/Motion"]
+	path = RPi/LPD/Motion
+	url = https://github.com/Motion-Project/motion.git
+[submodule "RPi/LPD/minimu9-ahrs"]
+	path = RPi/LPD/minimu9-ahrs
+	url = https://github.com/DavidEGrayson/minimu9-ahrs.git
