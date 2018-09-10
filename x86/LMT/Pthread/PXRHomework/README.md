@@ -1,15 +1,15 @@
-1. How it works:
+1. How it works:  
 ===============
 - The main idea is creating a thread associating a client connection (socket number)  
 - Each thread listens and reacts to behavior of associated client on the socket 
 
 2. How to build: 
-===============
+===============  
 $ cd /PXRHomework  
 $ make
 
-3. How to test:
-===============
+3. How to test:  
+===============  
 See /test/README.md  
 
 4. Folder layout:  
