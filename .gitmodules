@@ -499,3 +499,9 @@
 [submodule "Common/Libraries/IPC/DBus/pydbus"]
 	path = Common/Libraries/IPC/DBus/pydbus
 	url = https://github.com/LEW21/pydbus
+[submodule "Common/Examples/cmake-example"]
+	path = Common/Examples/cmake-example
+	url = https://github.com/bast/cmake-example
+[submodule "Common/Examples/minimal-examples"]
+	path = Common/Examples/minimal-examples
+	url = https://github.com/svenstaro/minimal-examples
