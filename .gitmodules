@@ -496,3 +496,6 @@
 [submodule "Common/Testing/sysbench"]
 	path = Common/Testing/sysbench
 	url = https://github.com/akopytov/sysbench.git
+[submodule "Common/Libraries/IPC/DBus/pydbus"]
+	path = Common/Libraries/IPC/DBus/pydbus
+	url = https://github.com/LEW21/pydbus
